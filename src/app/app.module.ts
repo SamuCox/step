@@ -7,11 +7,26 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthProvider } from '../providers/auth/auth';
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyDhDTAneynml0xSi2mNIXJ8yuryl-hJOz0",
+    authDomain: "step-customer.firebaseapp.com",
+    databaseURL: "https://step-customer.firebaseio.com",
+    projectId: "step-customer",
+    storageBucket: "step-customer.appspot.com",
+    messagingSenderId: "794485454653"
+};
 
 
 @NgModule({
@@ -20,11 +35,14 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,13 +50,15 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     LocalNotifications,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}
