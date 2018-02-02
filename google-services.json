@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "794485454653",
+    "firebase_url": "https://step-customer.firebaseio.com",
+    "project_id": "step-customer",
+    "storage_bucket": "step-customer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794485454653:android:62d2227e511499ee",
+        "android_client_info": {
+          "package_name": "com.stepstudy.fit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794485454653-t7fb0qdsmfshpqhe4t7ee48a6bjb6go3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXXw-vsKM1QuNuLBeB3bG2SzwhnyRT3f4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,6 +16,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import {FCM} from "@ionic-native/fcm";
 
 
 
@@ -58,7 +59,8 @@ export const firebaseConfig = {
     SplashScreen,
     LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    FCM,
   ]
 })
 export class AppModule {}

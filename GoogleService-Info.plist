@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>794485454653-osrffngvek71to2agq99p92s6sbnq5s7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.794485454653-osrffngvek71to2agq99p92s6sbnq5s7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDhHz7ccwqlFxbNtdZm5BebBtesgWarrV4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>794485454653</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.stepstudy.fit</string>
+	<key>PROJECT_ID</key>
+	<string>step-customer</string>
+	<key>STORAGE_BUCKET</key>
+	<string>step-customer.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:794485454653:ios:62d2227e511499ee</string>
+	<key>DATABASE_URL</key>
+	<string>https://step-customer.firebaseio.com</string>
+</dict>
+</plist>

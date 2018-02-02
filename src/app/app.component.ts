@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
+import {FCM, NotificationData} from "@ionic-native/fcm";
 
 
 @Component({
@@ -16,7 +17,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class MyApp {
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform, afAuth: AngularFireAuth, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public platform: Platform, afAuth: AngularFireAuth, public statusBar: StatusBar, public splashScreen: SplashScreen, private fcm:FCM) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -32,7 +33,39 @@ export class MyApp {
           authObserver.unsubscribe();
         }
       });
-    });
 
+
+      this.initializeApp();
+
+    });
   }
-}
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+
+      this.fcm.subscribeToTopic('all');
+
+      this.fcm.getToken()
+      .then((token:string)=>{
+        console.log("The token to use is: ",token);
+      })
+      .catch(error=>{
+        console.error(error);
+      });
+
+      this.fcm.onTokenRefresh().subscribe(
+        (token:string)=>console.log("Nuevo token",token),
+        error=>console.error(error)
+        );
+
+      this.fcm.onNotification().subscribe(data=>{
+        if(data.wasTapped){
+          console.log("Received in background");
+        } else {
+          console.log("Received in foreground");
+        };
+      })
+
+    })}}
