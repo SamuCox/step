@@ -16,6 +16,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {FCM} from "@ionic-native/fcm";
 
 
@@ -43,7 +44,8 @@ export const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
