@@ -18,7 +18,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {FCM} from "@ionic-native/fcm";
-
+import { Health } from '@ionic-native/health';
 
 
 export const firebaseConfig = {
@@ -63,6 +63,7 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     FCM,
+    Health
   ]
 })
 export class AppModule {}

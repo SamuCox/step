@@ -31,4 +31,8 @@ import firebase from 'firebase/app';
   		return this.afAuth.auth.createUserWithEmailAndPassword(newEmail, newPassword);
   	}
 
+    currentUID(): string {
+      return this.afAuth.auth.currentUser.uid;
+    }
+
   }

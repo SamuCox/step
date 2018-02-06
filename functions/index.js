@@ -6,3 +6,11 @@ const functions = require('firebase-functions');
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
+
+exports.lowercase = functions.database.ref('messages/{messageID}')
+.onWrite(event => {
+	const messageKey = event.data.key;
+	const messageValue = event.data.val();
+	const lowercaseBody = messageValue.body.toLowerCase();
+	return event.data.ref.child('lowercase').set(lowercase);
+})

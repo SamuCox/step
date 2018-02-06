@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { HomePage } from '../home/home';
+import { Profile } from '../../models/profile';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the SignupPage page.
@@ -24,7 +26,7 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authData: AuthProvider, 
     public formBuilder: FormBuilder, public loadingCtrl: LoadingController, 
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController, public afDatabase: AngularFireDatabase) {
   	this.signupForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
@@ -35,12 +37,20 @@ export class SignupPage {
     console.log('ionViewDidLoad SignupPage');
   }
 
+  createProfile(email: string) {
+    //this.afDatabase.list(`profile/${email}`)
+    var profile: Profile = {username: email, sex: "female"};
+    var uid = this.authData.currentUID();
+    this.afDatabase.object(`profile/${uid}`).set(profile);
+  }
+
   signupUser(){
     if (!this.signupForm.valid){
       console.log(this.signupForm.value);
     } else {
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then(() => {
+        this.createProfile(this.signupForm.value.email);
         this.navCtrl.setRoot(HomePage);
       }, (error) => {
         this.loading.dismiss().then( () => {
