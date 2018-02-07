@@ -17,16 +17,41 @@ import { Health } from '@ionic-native/health';
 export class HomePage {
 
 	profile = {username: "haa", sex: "female"} as Profile;
-	step = "";
+	step = "jljljl";
 
 	constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private health: Health, private afDatabase: AngularFireDatabase) {
 
 	}	
 
 	signOut() {
-			this.afAuth.auth.signOut();
-			this.navCtrl.setRoot(LoginPage);
-		}
+		this.afAuth.auth.signOut();
+		this.navCtrl.setRoot(LoginPage);
+	}
+
+	try2() {
+		this.step="123";
+		console.log("baba");
+		this.health.isAuthorized(["steps"])
+		.then(res => console.log("steps available: " + res));
+
+		this.health.isAvailable()
+		.then((available:boolean) => {
+			this.health.query({
+	  startDate: new Date(new Date().getTime() - 24 * 60 * 60 * 1000), // three days ago
+	  endDate: new Date(), // now
+	  dataType: 'steps'})
+			.then(res => {this.step = res.value; console.log(res == null);})
+			.catch(e => console.log(e));
+		})
+		.catch(e => console.log(e));
+
+/*
+		console.log("ba2ba");
+		this.health.promptInstallFit()
+		.then(res => console.log("efe: "+ res.value))
+		.catch(e => console.log(e));
+		*/
+	}
 
 	sendNotification() {
 		//this.afDatabase.object(`profile/123`).set({username: "49@baba.com", sex: "female"});
@@ -37,15 +62,6 @@ export class HomePage {
 		})
 		*/
 
-		var errorCallback = (err):string => {
-			return "error";
-		}
-
-		var successCallback = (data):string => {
-			console.log(data);
-			this.step = data;
-			return "success";
-		}
 
 		/*
 		(<any>window).plugins.health.query({
@@ -57,19 +73,17 @@ export class HomePage {
 
 	this.health.isAvailable()
 	.then((available:boolean) => {
-		console.log(available);
+		console.log("available" + available);
 		this.step = available + ";";
 		this.health.requestAuthorization([
-    'distance', 'nutrition',  //read and write permissions
-    {
-      read: ['steps'],       //read only permission
-      write: ['height', 'weight']  //write only permission
-    }
+    'distance', 'steps'
     ])
-		.then(res => console.log(res))
-		.catch(e => console.log(e));
+		.then(res => console.log("res" + res))
+		.catch(e => console.log("e1"+e));
 	})
-	.catch(e => console.log(e));
+	.catch(e => console.log("e2"+e));
+
+
 
 	/*
 	navigator.health.query({
