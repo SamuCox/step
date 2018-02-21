@@ -28,60 +28,100 @@ export class HomePage {
 		this.navCtrl.setRoot(LoginPage);
 	}
 
+	printObject(obj: Object) {
+		var output = '';
+		for (var property in obj[0]) {
+			output += property + ': ' + obj[property]+'; ';
+		}
+		console.log(output);
+	}
+
 	try2() {
 		this.step="123";
 		console.log("baba");
-		this.health.isAuthorized(["steps"])
-		.then(res => console.log("steps available: " + res));
 
+		/*
 		this.health.isAvailable()
 		.then((available:boolean) => {
-			this.health.query({
-	  startDate: new Date(new Date().getTime() - 24 * 60 * 60 * 1000), // three days ago
+			this.health.isAuthorized(["steps"])})
+			.then(res => console.log("steps available: " + res))
+			.catch(e => console.log("what's wrong " + e));
+			*/
+
+			/*
+			this.health.isAvailable()
+				.then((available:boolean) => {
+					this.health.isAuthorized(["steps"])})
+					.then(res => console.log("steps available: " + res))
+					.catch(e => console.log("what's wrong " + e));
+					*/
+
+					this.health.requestAuthorization([
+						'steps'
+						])
+					.then(res => {
+						console.log("requested " + res);
+
+						this.health.isAvailable()
+						.then((available:boolean) => {
+							this.health.isAuthorized(["steps"])})
+						.then(res => console.log("steps available: " + res))
+						.catch(e => console.log("what's wrong " + e));
+
+						this.health.query({
+  		startDate: new Date(new Date().getTime() - 10000000), // three days ago
+  		endDate: new Date(), // now
+  		dataType: 'steps'})
+						.then(res => {console.log(res[0].id); 
+							for(var property in res[0]) {
+								console.log(property + "=" + res[0][property]);
+							}
+							console.log("steps: " + res.value);})
+						.catch(e => {console.log("steps err " + e)});})
+					.catch(e => console.log("e1"+e));
+
+
+				}
+
+			/*
+			this.health.queryAggregated({
+	  startDate: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000), // three days ago
 	  endDate: new Date(), // now
-	  dataType: 'steps'})
-			.then(res => {this.step = res.value; console.log(res == null);})
+	  dataType: 'steps',
+	  bucket: 'day'})
+			.then(res => {this.step = res[0].value[0]; console.log(res == null); 
+				var output = '';
+				for (var property in res[0]) {
+					output += property + ': ' + res[property]+'; ';
+				}
+				console.log(output);
+
+			})
 			.catch(e => console.log(e));
 		})
 		.catch(e => console.log(e));
 
-/*
 		console.log("ba2ba");
 		this.health.promptInstallFit()
 		.then(res => console.log("efe: "+ res.value))
 		.catch(e => console.log(e));
 		*/
-	}
 
-	sendNotification() {
+		sendNotification() {
 		//this.afDatabase.object(`profile/123`).set({username: "49@baba.com", sex: "female"});
-/*
-		this.localNotifications.schedule({
-			title: "Hey!",
-			text: "blllababalalal eYou just got notified hehehe"
+
+		this.health.isAvailable()
+		.then((available:boolean) => {
+			console.log("available" + available);
+			this.step = available + ";";
+			this.health.requestAuthorization([
+			  //write only permission
+			  'steps'
+			  ])
+			.then(res => console.log("res" + res))
+			.catch(e => console.log("e1"+e));
 		})
-		*/
-
-
-		/*
-		(<any>window).plugins.health.query({
-	  startDate: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000), // three days ago
-	  endDate: new Date(), // now
-	  dataType: 'height'
-	}, successCallback, errorCallback)
-	*/
-
-	this.health.isAvailable()
-	.then((available:boolean) => {
-		console.log("available" + available);
-		this.step = available + ";";
-		this.health.requestAuthorization([
-    'distance', 'steps'
-    ])
-		.then(res => console.log("res" + res))
-		.catch(e => console.log("e1"+e));
-	})
-	.catch(e => console.log("e2"+e));
+		.catch(e => console.log("e2"+e));
 
 
 
