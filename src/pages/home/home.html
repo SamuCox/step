@@ -5,7 +5,19 @@
 </ion-header>
 
 <ion-content padding>
-<p>Step12345: {{step}}</p>
+  <p>Step12345: {{step}}</p>
+  <ion-card class="step-chart-area">
+    <div class="center-area">
+      <div class="centered">
+        <h1>{{step}}</h1>
+        <p>/10000</p>
+      </div>
+    </div>
+    <ion-card-content>
+      <canvas #doughnutCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
   <h2>Welcome to Ionic!</h2>
   <p>
     This starter project comes with simple tabs-based layout for apps
