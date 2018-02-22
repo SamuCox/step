@@ -17,7 +17,7 @@
     -->
     
     <ion-item *ngFor="let message of messages | async">
-    {{message.content}}
+    <button (click)="navigateToDetail(message)"> {{message.content}} </button>
     </ion-item>
     
   </ion-list>

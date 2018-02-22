@@ -4,6 +4,8 @@ import { Message } from '../../models/message';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireDatabase, AngularFireList, AngularFireAction } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { MessageDetailPage } from '../message-detail/message-detail';
+
 
 
 @Component({
@@ -30,6 +32,13 @@ export class ContactPage {
 			uid: this.authProvider.currentUID(),
 			content: "hehahah"
 		})
+	}
+
+
+	navigateToDetail(message: object) {
+		this.navCtrl.push(MessageDetailPage, {
+      message: message
+    });
 	}
 
 }
