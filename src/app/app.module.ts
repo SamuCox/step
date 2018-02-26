@@ -21,6 +21,8 @@ import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/databas
 import {FCM} from "@ionic-native/fcm";
 import { Health } from '@ionic-native/health';
 
+import { ComponentsModule} from "../components/components.module";
+import { MessageGraphComponent } from "../components/message-graph/message-graph";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDhDTAneynml0xSi2mNIXJ8yuryl-hJOz0",
@@ -40,7 +42,8 @@ export const firebaseConfig = {
     HomePage,
     TabsPage,
     LoginPage,
-    MessageDetailPage
+    MessageDetailPage,
+    MessageGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ export const firebaseConfig = {
     HomePage,
     TabsPage,
     LoginPage,
-    MessageDetailPage
+    MessageDetailPage,
+
   ],
   providers: [
     StatusBar,

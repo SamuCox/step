@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, NgModule } from '@angular/core';
+import { IonicPageModule } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -8,26 +9,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
-@Component({
-  selector: 'page-message-detail',
-  templateUrl: 'message-detail.html',
-})
-export class MessageDetailPage {
+ @IonicPage()
+ @Component({
+ 	selector: 'page-message-detail',
+ 	templateUrl: 'message-detail.html',
+ })
 
-	message : any;
-	title : string;
-	content : string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.message = navParams.get('message');
-  	console.log(this.message.content);
-  	this.content = this.message.content;
+ export class MessageDetailPage {
+
+ 	@Input() msg: object;
+
+ 	message : any;
+ 	title : string;
+ 	content : string;
+
+ 	constructor(public navCtrl: NavController, public navParams: NavParams) {
+ 		this.message = navParams.get('message');
+ 		console.log(this.message.content);
+ 		this.content = this.message.content;
   	//this.content = this.message.get('content');
   }
 
+
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MessageDetailPage');
+  	console.log('ionViewDidLoad MessageDetailPage');
   }
 
 }

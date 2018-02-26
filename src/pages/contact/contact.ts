@@ -30,12 +30,28 @@ export class ContactPage {
 		const newMsgRef = this.msgsRef.push({});
 		newMsgRef.set({
 			uid: this.authProvider.currentUID(),
-			content: "hehahah"
+			content: "hehahah",
+			sections: [{
+				type : "graph",
+				startDate : "2-10",
+				endDate : "2-15",
+				content : "You walk a lot"
+			}, {
+				type : "tip",
+				special : "Do you know you are fast?",
+				content : "By walking 10000 steps every day, you can become stronger"
+			}, {
+				type : "challenge",
+				content : "Walk 10 min",
+				fun : 5,
+				difficulty : 2
+			}
+			]
 		})
 	}
 
 
-	navigateToDetail(message: object) {
+	navigateToDetail(message: any) {
 		this.navCtrl.push(MessageDetailPage, {
       message: message
     });

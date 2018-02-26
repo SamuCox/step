@@ -8,8 +8,6 @@ import { LoginPage } from '../login/login'
 import { Health } from '@ionic-native/health';
 import { Chart } from 'chart.js';
 import { AuthProvider } from '../../providers/auth/auth';
-import { MessageDetailPage } from '../message-detail/message-detail';
-
 
 
 @Component({
@@ -84,12 +82,7 @@ export class HomePage {
 			step: this.step
 		})
 	}
-
-	navigateToDetail() {
-		this.navCtrl.push(MessageDetailPage, {
-      content: "Carl"
-    });
-	}
+	
 /*
 	ionViewDidEnter() {
 		this.health.requestAuthorization([
