@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { ViewController } from 'ionic-angular';
+import { Health } from '@ionic-native/health';
 
 /**
  * Generated class for the MessageGraphComponent component.
@@ -16,17 +17,19 @@ import { ViewController } from 'ionic-angular';
 
  	@Input() public text: string;
  	@Input() public section: any;
+ 	steps = [] as number[];
+ 	dates = [] as string[];
 
 
  	@ViewChild('barCanvas') barCanvas;
 
  	barChart: any;
 
- 	constructor(private viewController: ViewController) {
+ 	constructor(private viewController: ViewController, private health: Health) {
  		console.log('Hello MessageGraphComponent Component');
     //this.text = 'Hello World';
     this.viewController.didEnter.subscribe(
-    	() => this.initializeGraph()
+    	() => { this.initializeStepData();}
     	);
   }
 
@@ -46,10 +49,10 @@ import { ViewController } from 'ionic-angular';
 
   		type: 'bar',
   		data: {
-  			labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  			labels: this.dates,
   			datasets: [{
   				label: '# of Votes',
-  				data: [12, 19, 3, 5, 2, 3],
+  				data: this.steps,
   				backgroundColor: [
   				'rgba(255, 99, 132, 0.2)',
   				'rgba(54, 162, 235, 0.2)',
@@ -79,6 +82,52 @@ import { ViewController } from 'ionic-angular';
   			}
   		}		
   	});
+  }
+
+  initializeStepData() {
+  	//let startDate = new Date(this.section.startTime.year, this.section.startTime.month, this.section.startTime.day);
+  	let startDate = new Date(this.section.startTime + ' 00:00');
+  	let endDate = new Date(this.section.endTime + ' 00:00');
+  	var tempSteps = [] as number[];
+  	var tempDates = [] as string[];
+
+  	this.health.requestAuthorization([
+  		'steps'
+  		])
+  	.then(res => {
+  		console.log("requested " + res);
+  		this.health.queryAggregated({
+  		startDate: startDate, // three days ago
+  		endDate: endDate, // now
+  		dataType: 'steps',
+  		bucket: 'day'})
+  		.then(res => {
+  			console.log("what!!");
+  			res.forEach(function (value) {
+  				console.log("what!! " + parseInt(value.value));
+  				tempSteps.push(parseInt(value.value));
+  				tempDates.push(value.startDate.getDate() + "");
+  				console.log(value.value);
+  			})
+
+				/*
+				for(var property in res[1]) {
+					console.log(property + "=" + res[1][property]);
+					this.step = res[1].value;
+				}*/
+				this.steps = tempSteps;
+				this.dates = tempDates;
+				console.log("aaa" + this.steps[0]);
+				this.initializeGraph();
+				console.log(startDate);
+				console.log(endDate);
+			})
+  		.catch(e => {console.log("steps err " + e)})
+  		.catch(e => console.log("e1"+e));
+  	}
+  	);
+
+  	
   }
 
 }

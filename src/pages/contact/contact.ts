@@ -33,8 +33,8 @@ export class ContactPage {
 			content: "hehahah",
 			sections: [{
 				type : "graph",
-				startDate : "2-10",
-				endDate : "2-15",
+				startTime : "2018-02-08",
+				endTime : "2018-02-15",
 				content : "You walk a lot"
 			}, {
 				type : "tip",
