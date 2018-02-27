@@ -23,11 +23,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  	message : any;
  	title : string;
  	content : string;
+ 	sections : [any];
 
  	constructor(public navCtrl: NavController, public navParams: NavParams) {
  		this.message = navParams.get('message');
  		console.log(this.message.content);
  		this.content = this.message.content;
+ 		this.sections = this.message.sections;
   	//this.content = this.message.get('content');
   }
 

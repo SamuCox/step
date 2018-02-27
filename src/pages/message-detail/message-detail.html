@@ -15,9 +15,9 @@
 
 <ion-content padding>
 
-	<p>hahasdf</p>
-	<p>{{content}}</p>
-
-	<message-graph text="msg"></message-graph>
+	<ion-item *ngFor="let section of sections">
+		<message-graph *ngIf=" section.type == 'graph'" text={{section.content}} [section]="section"> </message-graph>
+		{{section}}
+	</ion-item>
 
 </ion-content>
