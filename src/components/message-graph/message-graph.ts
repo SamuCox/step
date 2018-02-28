@@ -51,7 +51,7 @@ import { Health } from '@ionic-native/health';
   		data: {
   			labels: this.dates,
   			datasets: [{
-  				label: '# of Votes',
+  				label: 'Step Count',
   				data: this.steps,
   				backgroundColor: [
   				'rgba(255, 99, 132, 0.2)',
@@ -62,17 +62,18 @@ import { Health } from '@ionic-native/health';
   				'rgba(255, 159, 64, 0.2)'
   				],
   				borderColor: [
-  				'rgba(255,99,132,1)',
-  				'rgba(54, 162, 235, 1)',
-  				'rgba(255, 206, 86, 1)',
-  				'rgba(75, 192, 192, 1)',
-  				'rgba(153, 102, 255, 1)',
-  				'rgba(255, 159, 64, 1)'
+  				'rgba(255,99,132,1)'
   				],
   				borderWidth: 1
   			}]
   		},
   		options: {
+  			legend: {
+  				display: true,
+  				labels: {
+  					fontColor: 'rgb(255, 99, 132)'
+  				}
+  			},
   			scales: {
   				yAxes: [{
   					ticks: {
@@ -116,7 +117,9 @@ import { Health } from '@ionic-native/health';
 					this.step = res[1].value;
 				}*/
 				this.steps = tempSteps;
+				this.steps.push(10000);
 				this.dates = tempDates;
+				this.dates.push("");
 				console.log("aaa" + this.steps[0]);
 				this.initializeGraph();
 				console.log(startDate);

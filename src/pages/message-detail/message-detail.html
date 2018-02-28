@@ -17,7 +17,7 @@
 
 	<ion-item *ngFor="let section of sections">
 		<message-graph *ngIf=" section.type == 'graph'" text={{section.content}} [section]="section"> </message-graph>
-		{{section}}
+		<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
 	</ion-item>
 
 </ion-content>

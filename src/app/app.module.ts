@@ -23,6 +23,8 @@ import { Health } from '@ionic-native/health';
 
 import { ComponentsModule} from "../components/components.module";
 import { MessageGraphComponent } from "../components/message-graph/message-graph";
+import { MessageChallengeComponent } from "../components/message-challenge/message-challenge";
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDhDTAneynml0xSi2mNIXJ8yuryl-hJOz0",
@@ -43,7 +45,8 @@ export const firebaseConfig = {
     TabsPage,
     LoginPage,
     MessageDetailPage,
-    MessageGraphComponent
+    MessageGraphComponent,
+    MessageChallengeComponent
   ],
   imports: [
     BrowserModule,

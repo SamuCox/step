@@ -1,0 +1,35 @@
+<!-- Generated template for the MessageChallengeComponent component -->
+<div>
+	Challenge Card
+</div>
+
+<ion-card>
+	<ion-card-header>
+		{{section?.title}}
+	</ion-card-header>
+	<ion-card-content>
+		<p>{{section?.content}}</p>
+		<hr>
+		<p>{{section?.category}}</p>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					Difficulty: {{section?.difficulty}}
+				</ion-col>
+				<ion-col>
+					Fun: {{section?.fun}}
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<button (click)="completeChallenge()">Complete</button>
+				</ion-col>
+				<ion-col>
+					<button>Give Up</button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card-content>
+</ion-card>
