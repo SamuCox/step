@@ -23,6 +23,7 @@ export class HomePage {
 
 	profile = {username: "haa", sex: "female"} as Profile;
 	step = "";
+	stepArray = [];
 
 	constructor(public navCtrl: NavController, public platform: Platform, public authProvider: AuthProvider, private afAuth: AngularFireAuth, private health: Health, private afDatabase: AngularFireDatabase) {
 		this.platform.ready().then((readySource) => {
@@ -32,13 +33,19 @@ export class HomePage {
 			.then(res => {
 				console.log("requested " + res);
 				this.health.queryAggregated({
-  		startDate: new Date(new Date().getTime() - 24 * 60 * 60 * 1000), // three days ago
+  		startDate: new Date(new Date().getTime() - 10 * 24 * 60 * 60 * 1000), // three days ago
   		endDate: new Date(), // now
   		dataType: 'steps',
   		bucket: 'day'})
 				.then(res => {
 					this.step = res[1].value;
+					var stepArray = [];
+					res.forEach(function(value) {
+						stepArray.push(value);
+						console.log("value!: "+ value.startDate);
+					});
 					this.generateStepChart(parseInt(this.step));
+					this.stepArray = stepArray;
 					this.uploadStep();
 
 				/*
@@ -74,6 +81,7 @@ export class HomePage {
 		var today = new Date();
 		var mm = today.getMonth();
 		var dd = today.getDate();
+		/*
 		this.msgsRef = this.afDatabase.list(`/profile/${this.authProvider.currentUID()}/steps`);
 		const newMsgRef = this.msgsRef.push({});
 		newMsgRef.set({
@@ -81,6 +89,19 @@ export class HomePage {
 			date: dd,
 			step: this.step
 		})
+		*/
+
+		var msgsRef = this.afDatabase.list(`/profile/${this.authProvider.currentUID()}/steps`);
+		msgsRef.remove();
+
+		this.stepArray.forEach(function(value) {
+			msgsRef.push({
+				month: value.startDate.getMonth(),
+				date: value.startDate.getDate(),
+				step: value.value
+			});
+		});
+
 	}
 	
 /*
