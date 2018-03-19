@@ -1,7 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { ViewController } from 'ionic-angular';
-import { Health } from '@ionic-native/health';
 
 /**
  * Generated class for the MessageGraphComponent component.
@@ -15,8 +14,18 @@ import { Health } from '@ionic-native/health';
  })
  export class MessageGraphComponent {
 
- 	@Input() public text: string;
- 	@Input() public section: any;
+ 	private _section: any;
+
+
+  @Input() set section(value: any) {
+    this._section = value;
+    this.initializeGraph();
+  }
+
+  get section(): any {
+    return this._section;
+  }
+
  	steps = [] as number[];
  	dates = [] as string[];
 
@@ -25,12 +34,15 @@ import { Health } from '@ionic-native/health';
 
  	barChart: any;
 
- 	constructor(private viewController: ViewController, private health: Health) {
+ 	constructor(private viewController: ViewController) {
+     //this.initializeGraph();
  		console.log('Hello MessageGraphComponent Component');
     //this.text = 'Hello World';
+    /*
     this.viewController.didEnter.subscribe(
-    	() => { this.initializeStepData();}
-    	);
+    	() => { console.log("exm??"); this.initializeGraph();}
+    	);*/
+     
   }
 
   ionViewDidLoad() {
@@ -49,10 +61,10 @@ import { Health } from '@ionic-native/health';
 
   		type: 'bar',
   		data: {
-  			labels: this.dates,
+  			labels: this.section.dates,
   			datasets: [{
   				label: 'Step Count',
-  				data: this.steps,
+  				data: this.section.steps,
   				backgroundColor: [
   				'rgba(255, 99, 132, 0.2)',
   				'rgba(54, 162, 235, 0.2)',
@@ -85,6 +97,7 @@ import { Health } from '@ionic-native/health';
   	});
   }
 
+/*
   initializeStepData() {
   	//let startDate = new Date(this.section.startTime.year, this.section.startTime.month, this.section.startTime.day);
   	let startDate = new Date(this.section.startTime + ' 00:00');
@@ -111,11 +124,7 @@ import { Health } from '@ionic-native/health';
   				console.log(value.value);
   			})
 
-				/*
-				for(var property in res[1]) {
-					console.log(property + "=" + res[1][property]);
-					this.step = res[1].value;
-				}*/
+
 				this.steps = tempSteps;
 				this.steps.push(10000);
 				this.dates = tempDates;
@@ -132,5 +141,6 @@ import { Health } from '@ionic-native/health';
 
   	
   }
+  */
 
 }

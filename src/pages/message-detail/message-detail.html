@@ -16,7 +16,9 @@
 <ion-content padding>
 
 	<ion-item *ngFor="let section of sections">
-		<message-graph *ngIf=" section.type == 'graph'" text={{section.content}} [section]="section"> </message-graph>
+		<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
+		<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
+		<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 		<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
 	</ion-item>
 

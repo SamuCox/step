@@ -1,4 +1,41 @@
 <!-- Generated template for the MessageDetailComponent component -->
 <div>
-  {{text}}
+	heheheheakjfkdsjk
 </div>
+
+<ion-card>
+	<ion-card-header> Time: {{time.date}} </ion-card-header>
+	<div *ngIf="sections">
+		<ion-item *ngFor="let section of sections">
+			hhee: {{section.length}}
+			<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
+			<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
+			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
+			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
+
+			<div *ngIf=" section.type == 'streak-comparison'">balabala2333</div>
+
+			{{section.type}}
+			<ion-item *ngFor="let question of section.survey">
+				886
+			</ion-item>
+
+			<form [formGroup]="todo" (ngSubmit)="logForm()">
+				duululu{{section.survey}}
+				<!--
+				<ion-item *ngFor="let question of section.survey">
+					886
+					<ion-label text-wrap>{{question.question}}</ion-label>
+					<ion-input *ngIf=" question.type == 'field'" type="text" formControlName={{question.index}}></ion-input>
+					<ion-range *ngIf=" question.type == 'likert'" min="1" max="7" color="secondary" formControlName={{question.index}}>
+						<ion-label range-left>1</ion-label>
+						<ion-label range-right>7</ion-label>
+					</ion-range>
+				</ion-item>
+				-->
+
+				<button ion-button type="submit" [disabled]="!todo.valid">Submit</button>
+			</form>
+		</ion-item>
+	</div>
+</ion-card>

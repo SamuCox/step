@@ -22,8 +22,13 @@ import {FCM} from "@ionic-native/fcm";
 import { Health } from '@ionic-native/health';
 
 import { ComponentsModule} from "../components/components.module";
+import { MessageDetailComponent } from "../components/message-detail/message-detail";
 import { MessageGraphComponent } from "../components/message-graph/message-graph";
 import { MessageChallengeComponent } from "../components/message-challenge/message-challenge";
+import { MessageStreakComparisonComponent } from "../components/message-streak-comparison/message-streak-comparison";
+import { MessageStatasComparisonComponent } from "../components/message-statas-comparison/message-statas-comparison";
+
+import { MainPipe } from "../app/main-pipe.module";
 
 
 export const firebaseConfig = {
@@ -45,15 +50,19 @@ export const firebaseConfig = {
     TabsPage,
     LoginPage,
     MessageDetailPage,
+    MessageDetailComponent,
     MessageGraphComponent,
-    MessageChallengeComponent
+    MessageChallengeComponent,
+    MessageStreakComparisonComponent,
+    MessageStatasComparisonComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MainPipe
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,8 +72,7 @@ export const firebaseConfig = {
     HomePage,
     TabsPage,
     LoginPage,
-    MessageDetailPage,
-
+    MessageDetailPage
   ],
   providers: [
     StatusBar,

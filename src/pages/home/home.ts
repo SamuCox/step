@@ -18,7 +18,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class HomePage {
 
 	@ViewChild('doughnutCanvas') doughnutCanvas;
-	doughnutCanvas: any;
+	//doughnutCanvas: any;
 	msgsRef: AngularFireList<any>;
 
 	profile = {username: "haa", sex: "female"} as Profile;

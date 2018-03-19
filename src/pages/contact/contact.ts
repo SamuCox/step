@@ -41,11 +41,67 @@ export class ContactPage {
 		newMsgRef.set({
 			uid: this.authProvider.currentUID(),
 			content: "hehahah",
+			time: {date: 15, month: 2, year: 2018},
 			sections: [{
 				type : "graph",
 				startTime : "2018-02-08",
 				endTime : "2018-02-15",
+				steps: [8201, 7500, 9020, 7502, 6702, 9520, 8640],
+				dates: [8, 9, 10, 11, 12, 13, 14, 15],
 				content : "You walk a lot"
+			}, {
+				type : "streak-comparison",
+				target : "all",
+				streakID : 12,
+				recommendID : 15,
+				percentile : 75,
+				startTime : "2018-02-11",
+				endTime : "2018-02-15",
+				steps : [7502, 6702, 9520, 8640, 10020],
+				dates: [11, 12, 13, 14, 15],
+				streakDescription : "You are walking slowly",
+				recommendDescription : "Try walking faster",
+				survey : [{
+					index : "field1",
+					type : "field",
+					question : "How do you feel when looking at the comparison?"
+				}, {
+					index : "likert1",
+					type : "likert",
+					question : "To what extent do you feel inferior after seeing comparisons to other users?"
+				}, {
+					index : "likert2",
+					type : "likert",
+					question : "To what extent do you feel encouraged after seeing comparisons to other users?"
+				}, {
+					index : "mcq1",
+					type : "mcq",
+					question : "Why didn’t you complete the challenge?"
+				}]
+			}, {
+				type : "stats-comparison",
+				steps : 7420,
+				percentile : 60,
+				recommendPercentile : 80,
+				recommendSteps : 8920,
+				statsDescription : "You are walking too few",
+				survey : [{
+					index : "field1",
+					type : "field",
+					question : "How do you feel when looking at the comparison?"
+				}, {
+					index : "likert1",
+					type : "likert",
+					question : "To what extent do you feel inferior after seeing comparisons to other users?"
+				}, {
+					index : "likert2",
+					type : "likert",
+					question : "To what extent do you feel encouraged after seeing comparisons to other users?"
+				}, {
+					index : "mcq1",
+					type : "mcq",
+					question : "Why didn’t you complete the challenge?"
+				}]
 			}, {
 				type : "tip",
 				special : "Do you know you are fast?",
