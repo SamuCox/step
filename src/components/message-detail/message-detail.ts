@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-
 /**
  * Generated class for the MessageDetailComponent component.
  *

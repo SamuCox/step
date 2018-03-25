@@ -30,4 +30,25 @@ page-home {
 		position: relative;
 		text-align: center;
 	}
+
+	.range-md .range-bar {
+		border-radius: 10px !important;
+		margin-left: -15px;
+		width: 110%;
+	}
+
+	.range-md .range-tick {
+		//border-color: white;
+		//border-style: solid;
+    //border-width: 2px;
+    background: #888;
+    //padding-left: 10px;
+	}
+
+	.range-md .range-knob {
+		border-color: white;
+		border-style: solid;
+    border-width: 2px;
+    background: #c4c4c4 !important;
+	}
 }

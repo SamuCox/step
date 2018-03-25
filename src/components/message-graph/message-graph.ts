@@ -17,85 +17,110 @@ import { ViewController } from 'ionic-angular';
  	private _section: any;
 
 
-  @Input() set section(value: any) {
-    this._section = value;
-    this.initializeGraph();
-  }
+   @Input() set section(value: any) {
+     this._section = value;
+     this.initializeGraph();
+   }
 
-  get section(): any {
-    return this._section;
-  }
+   get section(): any {
+     return this._section;
+   }
 
- 	steps = [] as number[];
- 	dates = [] as string[];
+   steps = [] as number[];
+   dates = [] as string[];
 
 
- 	@ViewChild('barCanvas') barCanvas;
+   @ViewChild('barCanvas') barCanvas;
 
- 	barChart: any;
+   barChart: any;
 
- 	constructor(private viewController: ViewController) {
+   constructor(private viewController: ViewController) {
      //this.initializeGraph();
- 		console.log('Hello MessageGraphComponent Component');
+     console.log('Hello MessageGraphComponent Component');
     //this.text = 'Hello World';
     /*
     this.viewController.didEnter.subscribe(
     	() => { console.log("exm??"); this.initializeGraph();}
     	);*/
-     
-  }
 
-  ionViewDidLoad() {
-  	console.log("graph going to load");
-  }
+    }
 
-  initializeGraph() {
-  	console.log("section: " + this.section);
-  	console.log("section: " + this.section.content);
-  	for(var property in this.section) {
-  		console.log(property + "=" + this.section[property]);
-  		console.log(this.section.value);
-  	}
+    ionViewDidLoad() {
+      console.log("graph going to load");
+    }
 
-  	this.barChart = new Chart(this.barCanvas.nativeElement, {
+    initializeGraph() {
+      console.log("section: " + this.section);
+      console.log("section: " + this.section.content);
+      for(var property in this.section) {
+        console.log(property + "=" + this.section[property]);
+        console.log(this.section.value);
+      }
 
-  		type: 'bar',
-  		data: {
-  			labels: this.section.dates,
-  			datasets: [{
-  				label: 'Step Count',
-  				data: this.section.steps,
-  				backgroundColor: [
-  				'rgba(255, 99, 132, 0.2)',
-  				'rgba(54, 162, 235, 0.2)',
-  				'rgba(255, 206, 86, 0.2)',
-  				'rgba(75, 192, 192, 0.2)',
-  				'rgba(153, 102, 255, 0.2)',
-  				'rgba(255, 159, 64, 0.2)'
-  				],
-  				borderColor: [
-  				'rgba(255,99,132,1)'
-  				],
-  				borderWidth: 1
-  			}]
-  		},
-  		options: {
-  			legend: {
-  				display: true,
-  				labels: {
-  					fontColor: 'rgb(255, 99, 132)'
-  				}
-  			},
-  			scales: {
-  				yAxes: [{
-  					ticks: {
-  						beginAtZero:true
-  					}
-  				}]
-  			}
-  		}		
-  	});
-  }
+      const maxStepCount = Math.max(...this.section.steps);
+      var maxYAxis = maxStepCount > 10000 ? Math.ceil(maxStepCount/1000)*1000 : 10000;
+
+      this.barChart = new Chart(this.barCanvas.nativeElement, {
+
+        type: 'bar',
+        data: {
+          labels: this.section.dates,
+          datasets: [{
+            label: 'Step Count',
+            data: this.section.steps,
+            backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+            'rgba(255,99,132,1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          legend: {
+            display: false,
+            labels: {
+              fontColor: 'rgb(255, 99, 132)'
+            }
+          },
+          layout :{
+            padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0
+            }
+          },
+          scales: {
+            xAxes: [{
+              gridLines: {
+                display: false
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero:true,
+                max : maxYAxis,
+                stepSize : 5000,
+                callback: function(label, index, labels) {
+                  return (label == 0)? 0 : label/1000+'k';
+                }
+              },
+              gridLines: {
+                display: true
+              }
+            }]
+          }
+        }		
+      });
+    }
 
 /*
   initializeStepData() {

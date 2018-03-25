@@ -31,6 +31,9 @@ import { MessageStatasComparisonComponent } from "../components/message-statas-c
 import { MainPipe } from "../app/main-pipe.module";
 import { FcmProvider } from '../providers/fcm/fcm';
 
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
+import { NouisliderModule } from "ng2-nouislider";
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDhDTAneynml0xSi2mNIXJ8yuryl-hJOz0",
@@ -63,7 +66,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    MainPipe
+    MainPipe,
+    IonRangeSliderModule,
+    NouisliderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
