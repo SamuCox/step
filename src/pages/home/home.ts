@@ -18,7 +18,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class HomePage {
 
 	@ViewChild('doughnutCanvas') doughnutCanvas;
-	//doughnutCanvas: any;
+	doughnutChart: any;
 	msgsRef: AngularFireList<any>;
 
 	profile = {username: "haa", sex: "female"} as Profile;
@@ -38,7 +38,8 @@ export class HomePage {
   		dataType: 'steps',
   		bucket: 'day'})
 				.then(res => {
-					this.step = res[1].value;
+					var length = res.length;
+					this.step = res[length - 1].value;
 					var stepArray = [];
 					res.forEach(function(value) {
 						stepArray.push(value);
@@ -79,7 +80,8 @@ export class HomePage {
 
 	uploadStep() {
 		var today = new Date();
-		var mm = today.getMonth();
+		var yy = today.getFullYear();
+		var mm = today.getMonth() + 1;
 		var dd = today.getDate();
 		/*
 		this.msgsRef = this.afDatabase.list(`/profile/${this.authProvider.currentUID()}/steps`);
@@ -96,7 +98,8 @@ export class HomePage {
 
 		this.stepArray.forEach(function(value) {
 			msgsRef.push({
-				month: value.startDate.getMonth(),
+				year: value.startDate.getYear() + 1900,
+				month: value.startDate.getMonth() + 1,
 				date: value.startDate.getDate(),
 				step: value.value
 			});

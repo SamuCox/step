@@ -62,21 +62,30 @@ export class ContactPage {
 				streakDescription : "You are walking slowly",
 				recommendDescription : "Try walking faster",
 				survey : [{
-					index : "field1",
+					index : "0",
 					type : "field",
-					question : "How do you feel when looking at the comparison?"
+					question : "How do you feel when looking at the comparison?",
+					isAnswered : false,
+					answer : ""
 				}, {
-					index : "likert1",
+					index : "0",
 					type : "likert",
-					question : "To what extent do you feel inferior after seeing comparisons to other users?"
+					question : "To what extent do you feel inferior after seeing comparisons to other users?",
+					isAnswered : false,
+					answer : ""
 				}, {
-					index : "likert2",
+					index : "1",
 					type : "likert",
-					question : "To what extent do you feel encouraged after seeing comparisons to other users?"
+					question : "To what extent do you feel encouraged after seeing comparisons to other users?",
+					isAnswered : false,
+					answer : ""
 				}, {
-					index : "mcq1",
+					index : "0",
 					type : "mcq",
-					question : "Why didn’t you complete the challenge?"
+					question : "Why didn’t you complete the challenge?",
+					options : ["I don't like it", "I am too tired"],
+					isAnswered : false,
+					answer : ""
 				}]
 			}, {
 				type : "stats-comparison",
@@ -86,21 +95,24 @@ export class ContactPage {
 				recommendSteps : 8920,
 				statsDescription : "You are walking too few",
 				survey : [{
-					index : "field1",
+					index : 0,
 					type : "field",
 					question : "How do you feel when looking at the comparison?"
 				}, {
-					index : "likert1",
+					index : 0,
 					type : "likert",
 					question : "To what extent do you feel inferior after seeing comparisons to other users?"
 				}, {
-					index : "likert2",
+					index : 1,
 					type : "likert",
 					question : "To what extent do you feel encouraged after seeing comparisons to other users?"
 				}, {
-					index : "mcq1",
+					index : 0,
 					type : "mcq",
-					question : "Why didn’t you complete the challenge?"
+					question : "Why didn’t you complete the challenge?",
+					options : ["I don't like it", "I am too tired"],
+					isAnswered : false,
+					answer : ""
 				}]
 			}, {
 				type : "tip",

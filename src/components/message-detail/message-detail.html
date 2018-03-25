@@ -4,38 +4,30 @@
 </div>
 
 <ion-card>
-	<ion-card-header> Time: {{time.date}} </ion-card-header>
-	<div *ngIf="sections">
-		<ion-item *ngFor="let section of sections">
-			hhee: {{section.length}}
+	<ion-card-header> {{time.month}}.{{time.date}} </ion-card-header>
+	<ion-card-content *ngIf="sections">
+		<div *ngFor="let section of displayedSections; let idx = index" id="section{{idx}}">
 			<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
 			<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
 			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
+			<ion-label>{{section.type}}hahahah</ion-label>
 
-			<div *ngIf=" section.type == 'streak-comparison'">balabala2333</div>
-
-			{{section.type}}
 			<ion-item *ngFor="let question of section.survey">
-				886
-			</ion-item>
+			balabala
+				<ion-label>{{question.question}}</ion-label>
+				<ion-input [(ngModel)]="field[question.index]" *ngIf=" question.type == 'field'" type="text"></ion-input>
+				<ion-range *ngIf=" question.type == 'likert'" min="1" max="7" color="secondary">
+					<ion-label range-left>1</ion-label>
+					<ion-label range-right>7</ion-label>
+				</ion-range>
+				<button ion-button (click)="updateMCQChoice(question.index, idx)" *ngFor="let option of question.options; let idx = index">{{option}}</button>
 
-			<form [formGroup]="todo" (ngSubmit)="logForm()">
-				duululu{{section.survey}}
-				<!--
-				<ion-item *ngFor="let question of section.survey">
-					886
-					<ion-label text-wrap>{{question.question}}</ion-label>
-					<ion-input *ngIf=" question.type == 'field'" type="text" formControlName={{question.index}}></ion-input>
-					<ion-range *ngIf=" question.type == 'likert'" min="1" max="7" color="secondary" formControlName={{question.index}}>
-						<ion-label range-left>1</ion-label>
-						<ion-label range-right>7</ion-label>
-					</ion-range>
+				<ion-item *ngIf="question.type == 'mcq'">
+					gegeda	
 				</ion-item>
-				-->
-
-				<button ion-button type="submit" [disabled]="!todo.valid">Submit</button>
-			</form>
-		</ion-item>
-	</div>
+			</ion-item>
+			<button ion-button type="submit" [disabled]="todo.valid" (click)="logForm(idx)">Submit</button>
+		</div>
+	</ion-card-content>
 </ion-card>

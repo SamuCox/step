@@ -18,8 +18,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/database';
-import {FCM} from "@ionic-native/fcm";
 import { Health } from '@ionic-native/health';
+import { Firebase } from '@ionic-native/firebase';
 
 import { ComponentsModule} from "../components/components.module";
 import { MessageDetailComponent } from "../components/message-detail/message-detail";
@@ -29,6 +29,7 @@ import { MessageStreakComparisonComponent } from "../components/message-streak-c
 import { MessageStatasComparisonComponent } from "../components/message-statas-comparison/message-statas-comparison";
 
 import { MainPipe } from "../app/main-pipe.module";
+import { FcmProvider } from '../providers/fcm/fcm';
 
 
 export const firebaseConfig = {
@@ -80,8 +81,9 @@ export const firebaseConfig = {
     LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    FCM,
-    Health
+    Health,
+    Firebase,
+    FcmProvider
   ]
 })
 export class AppModule {}

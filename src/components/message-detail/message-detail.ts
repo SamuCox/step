@@ -1,6 +1,6 @@
-import { Component, Input, NgModule } from '@angular/core';
+import { Component, Input, NgModule,ViewChild} from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
@@ -18,36 +18,34 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
  export class MessageDetailComponent {
 
  	@Input() msg: AngularFireAction<DatabaseSnapshot>;
+ 	@ViewChild(Content) pageContent: Content;
 
  	private todo : FormGroup;
 
-  survey = [];
+ 	survey = [];
 
-  likert1: number = 5;
-  likert2: number = 5;
-  likert3: number;
-  mcq1: number = 0;
-
-  field1: string = "";
-
-  likert: [number] = [1];
+ 	likert = [5, 5, 5];
+ 	mcq = [1];
+ 	field = ["KEKEEKE"];
 
  	text: string;
 
  	title : string;
  	content : string;
  	sections : [any];
+ 	displayedSections = [];
+ 	progressIndex = 0;
  	time : any;
 
  	constructor(private formBuilder: FormBuilder) {
  		this.todo = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: [''],
-      field1: [this.field1],
-      likert1: [this.likert1],
-      likert2: [this.likert2],
-      mcq1: [this.mcq1]
-    });	
+ 			title: ['', Validators.required],
+ 			description: [''],
+ 			field0: [this.field[0]],
+ 			likert0: [this.likert[0]],
+ 			likert1: [this.likert[1]],
+ 			mcq0: [this.mcq[0]]
+ 		});	
  	}
 
  	ngOnChanges(changes: any) {
@@ -56,11 +54,26 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
  		this.sections = this.msg.payload.val().sections;
  		console.log("length: " + this.sections.length);
  		this.time = this.msg.payload.val().time;
+ 		this.displayedSections.push(this.sections[0]);
  	}
 
- 	logForm(){
-    console.log(this.todo.value)
-  }
+ 	logForm(idx: number){
+ 		if (idx == this.progressIndex && this.progressIndex < this.sections.length - 1) {
+ 			this.progressIndex++;
+ 			this.displayedSections.push(this.sections[this.progressIndex]);
+ 			this.scrollTo("section" + idx);
+ 		}
+ 		console.log("index == " + idx);
+ 	}
+
+ 	scrollTo(elementId:string) {
+ 		//let yOffset = document.getElementById(elementId).offsetTop + document.getElementById(elementId).offsetHeight;
+ 		//this.pageContent.scrollTo(0, yOffset, 4000);
+ 	}
+
+ 	updateMCQChoice(questionID: number, selected: number) {
+ 		this.mcq[questionID] = selected;
+ 	}
 
  }
 
