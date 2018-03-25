@@ -6,27 +6,32 @@
 <ion-card>
 	<ion-card-header> {{time.month}}.{{time.date}} </ion-card-header>
 	<ion-card-content *ngIf="sections">
-		<div *ngFor="let section of displayedSections; let idx = index" id="section{{idx}}">
+		<div class="section-wrapper" *ngFor="let section of displayedSections; let idx = index" id="section{{idx}}">
 			<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
 			<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
 			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
 			<ion-label>{{section.type}}hahahah</ion-label>
 
-			<ion-item *ngFor="let question of section.survey">
-			balabala
+			<ion-list class="sruvey-wrapper" *ngFor="let question of section.survey">
+				balabala
 				<ion-label>{{question.question}}</ion-label>
-				<ion-input [(ngModel)]="field[question.index]" *ngIf=" question.type == 'field'" type="text"></ion-input>
-				<ion-range *ngIf=" question.type == 'likert'" min="1" max="7" color="secondary">
-					<ion-label range-left>1</ion-label>
-					<ion-label range-right>7</ion-label>
-				</ion-range>
+				<ion-item *ngIf=" question.type == 'field'">
+					<ion-input [(ngModel)]="field[question.index]" type="text"></ion-input>
+				</ion-item>
+				<ion-item *ngIf=" question.type == 'likert'">
+					<ion-range min="1" max="7" color="secondary">
+						<ion-label range-left>1</ion-label>
+						<ion-label range-right>7</ion-label>
+					</ion-range>
+				</ion-item>
 				<button ion-button (click)="updateMCQChoice(question.index, idx)" *ngFor="let option of question.options; let idx = index">{{option}}</button>
-
+				<ion-label *ngIf="question.type == 'mcq'">MCQQQ!</ion-label>
 				<ion-item *ngIf="question.type == 'mcq'">
 					gegeda	
 				</ion-item>
-			</ion-item>
+			</ion-list>
+
 			<button ion-button type="submit" [disabled]="todo.valid" (click)="logForm(idx)">Submit</button>
 		</div>
 	</ion-card-content>
