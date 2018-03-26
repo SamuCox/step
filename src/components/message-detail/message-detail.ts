@@ -23,6 +23,9 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
  	survey = [];
 
+ 	//todo from server
+ 	currentQIDs = [0, 0, 0];
+
  	likert = [5, 5, 5];
  	mcq = [1];
  	field = ["KEKEEKE"];
