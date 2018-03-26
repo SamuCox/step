@@ -24,7 +24,7 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
  	survey = [];
 
  	//todo from server
- 	currentQIDs = [0, 0, 0];
+ 	currentQIDs = [0, 0, 0, 0, 0];
 
  	likert = [5, 5, 5];
  	mcq = [1];
@@ -66,6 +66,11 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
  			this.scrollTo("section" + idx);
  		}
  		console.log("index == " + idx);
+ 	}
+
+ 	nextQuestion(sectionIdx: number, questionIdx: number) {
+ 		this.currentQIDs[sectionIdx]++;
+ 		console.log("next Q!: " + this.currentQIDs[sectionIdx]);
  	}
 
  	scrollTo(elementId:string) {

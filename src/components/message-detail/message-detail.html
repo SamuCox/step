@@ -13,7 +13,7 @@
 
 			<ion-list>
 				<div class="sruvey-wrapper" *ngFor="let question of section.survey; let qidx = index">
-					<div class="question-wrapper" *ngIf="currentQIDs[0] == qidx">
+					<ion-card class="question-wrapper" *ngIf="currentQIDs[idx] == qidx">
 
 						<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 
@@ -33,12 +33,15 @@
 								{{option}}
 							</button>
 						</ion-list>
-
-					</div>
+					</ion-card>
 				</div>
 			</ion-list>
+			<div class="question-button-group">
+				<button ion-button (click)="logForm(idx)"><</button>
+				<button ion-button (click)="nextQuestion(idx, qidx)">></button>
+			</div>
 
-			<button ion-button full="true" type="submit" class="submit-button" [disabled]="todo.valid" (click)="logForm(idx)">Submit</button>
+			<button ion-button full="true" type="submit" class="submit-button" [disabled]="todo.valid" (click)="logForm(idx)">Next Section</button>
 			<br>
 		</div>
 	</ion-card-content>
