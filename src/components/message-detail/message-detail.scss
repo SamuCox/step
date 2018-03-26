@@ -1,7 +1,20 @@
 message-detail {
 	.survey-wrapper {
-		margin: 0px;
-		padding: 0px;
+		
+	}
+
+	.question-button-group {
+		margin-top: 40px;
+	}
+
+	.survey-list-wrapper {
+		//background: black;
+		margin: 20px 0px 20px 0px;
+		padding: 10px 20px 20px 20px;
+		background: color($colors, light);
+		color: color($colors, dark);
+		font-size: 20px;
+		//background: linear-gradient(#fdae84, #e2b49a);
 	}
 
 	.section-wrapper {
@@ -15,18 +28,25 @@ message-detail {
 
 	.message-card {
 		border-radius: 10px;
+		padding: 0px !important;
 	}
 
 	ion-card-header {
 		font-size: 40px !important;
 		border-bottom: 1px solid color($colors, light);
+		margin-bottom: 0px;
+	}
+
+	ion-card-content {
+		padding: 0px;
 	}
 
 	.section-title {
-		font-size: 15px !important;
+		font-size: 18px !important;
 		font-weight: bold !important;
 		text-align: center;
 		width: 100%;
+		color: color($colors, dark);
 	}
 
 	.section-title:after {
@@ -80,5 +100,28 @@ message-detail {
   }
 
 	.question-wrapper{
+		//padding: 20px;
+	}
+
+//range
+	.range-md .range-bar {
+		border-radius: 10px !important;
+		margin-left: -15px;
+		width: 110%;
+	}
+
+	.range-md .range-tick {
+		//border-color: white;
+		//border-style: solid;
+    //border-width: 2px;
+    background: #888;
+    //padding-left: 10px;
+	}
+
+	.range-md .range-knob {
+		border-color: white;
+		border-style: solid;
+    border-width: 2px;
+    background: #c4c4c4 !important;
 	}
 }

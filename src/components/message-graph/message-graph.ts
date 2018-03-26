@@ -49,6 +49,23 @@ import { ViewController } from 'ionic-angular';
       console.log("graph going to load");
     }
 
+    initializeBarColors() {
+      var colorArray = this.section.steps.map(step =>{ 
+        var cObj = [];
+        if (step < 5000) {
+          cObj.push('rgba(255, 99, 132, 0.3)');
+        } else if (step < 7500) {
+          cObj.push('rgba(255, 159, 64, 0.3)');
+        } else if (step < 10000) {
+          cObj.push('rgba(54, 162, 235, 0.3)');
+        } else {
+          cObj.push('rgba(75, 192, 192, 0.3)');
+        }
+        return cObj;
+      });
+      return colorArray;
+    }
+
     initializeGraph() {
       console.log("section: " + this.section);
       console.log("section: " + this.section.content);
@@ -68,18 +85,11 @@ import { ViewController } from 'ionic-angular';
           datasets: [{
             label: 'Step Count',
             data: this.section.steps,
-            backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-            ],
+            backgroundColor: this.initializeBarColors(),
             borderColor: [
             'rgba(255,99,132,1)'
             ],
-            borderWidth: 1
+            borderWidth: 0
           }]
         },
         options: {

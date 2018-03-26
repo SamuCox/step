@@ -9,6 +9,21 @@ page-contact {
 	}
 
 	#message-list {
-		background: linear-gradient(#acb6e5, #86fde8);
+		//background: linear-gradient(#acb6e5, #86fde8);
+		background: linear-gradient(#dae9e4, #8bcbc8);
+		padding: 0px !important;
+		//background: color($colors, light);
 	}
+
+	.message-item {
+		//padding-left: 0px;
+		//padding-right: 0px;
+		padding: 5px !important;
+		
+	}
+
+	.item-inner {
+			//padding-right: 0px !important;
+			//padding-left: 0px !important;
+		}
 }

@@ -11,9 +11,9 @@
 			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
 
-			<ion-list>
-				<div class="survey-wrapper" *ngFor="let question of section.survey; let qidx = index">
-					<ion-card class="question-wrapper fadeIn" *ngIf="currentQIDs[idx] == qidx">
+			<ion-slides class="survey-list-wrapper">
+				<ion-slide class="survey-wrapper" *ngFor="let question of section.survey; let qidx = index">
+					<div class="question-wrapper fadeIn">
 
 						<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 
@@ -22,7 +22,7 @@
 						</ion-item>
 
 						<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
-							<ion-range min="1" max="7" color="secondary" pin="true" snaps="true">
+							<ion-range min="1" max="7" color="mid" pin="true" snaps="true">
 								<ion-label range-left>1</ion-label>
 								<ion-label range-right>7</ion-label>
 							</ion-range>
@@ -33,15 +33,15 @@
 								{{option}}
 							</button>
 						</ion-list>
-					</ion-card>
-				</div>
-			</ion-list>
+					</div>
+				</ion-slide>
+			</ion-slides>
 			<div class="question-button-group">
 				<button ion-button (click)="logForm(idx)"><</button>
-				<button ion-button (click)="nextQuestion(idx, qidx)">></button>
+				<button ion-button (click)="nextQuestion(idx, qidx)">Next</button>
 			</div>
 
-			<button ion-button full="true" type="submit" class="submit-button" [disabled]="todo.valid" (click)="logForm(idx)">Next Section</button>
+			<button ion-button full="true" type="submit" class="submit-button" [disabled]="!valid" (click)="logForm(idx)">Next Section</button>
 			<br>
 		</div>
 	</ion-card-content>

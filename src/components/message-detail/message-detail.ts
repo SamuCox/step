@@ -28,7 +28,9 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
  	likert = [5, 5, 5];
  	mcq = [1];
- 	field = ["KEKEEKE"];
+ 	field = ["I feel"];
+
+ 	valid = true;
 
  	text: string;
 
@@ -39,15 +41,7 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
  	progressIndex = 0;
  	time : any;
 
- 	constructor(private formBuilder: FormBuilder) {
- 		this.todo = this.formBuilder.group({
- 			title: ['', Validators.required],
- 			description: [''],
- 			field0: [this.field[0]],
- 			likert0: [this.likert[0]],
- 			likert1: [this.likert[1]],
- 			mcq0: [this.mcq[0]]
- 		});	
+ 	constructor() {
  	}
 
  	ngOnChanges(changes: any) {
@@ -69,8 +63,10 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
  	}
 
  	nextQuestion(sectionIdx: number, questionIdx: number) {
- 		this.currentQIDs[sectionIdx]++;
- 		console.log("next Q!: " + this.currentQIDs[sectionIdx]);
+ 		if (this.sections[sectionIdx].survey != null && this.currentQIDs[sectionIdx] < this.sections[sectionIdx].survey.length - 1) {
+ 			this.currentQIDs[sectionIdx]++;
+ 			console.log("next Q!: " + this.currentQIDs[sectionIdx]);
+ 		}
  	}
 
  	scrollTo(elementId:string) {
