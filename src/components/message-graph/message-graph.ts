@@ -101,7 +101,8 @@ import { ViewController } from 'ionic-angular';
           scales: {
             xAxes: [{
               gridLines: {
-                display: false
+                display: false,
+                drawBorder: false,
               }
             }],
             yAxes: [{
@@ -114,7 +115,8 @@ import { ViewController } from 'ionic-angular';
                 }
               },
               gridLines: {
-                display: true
+                display: false,
+                drawBorder: false,
               }
             }]
           }

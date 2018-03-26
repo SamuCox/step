@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="message-list">
   <button (click)="addMsg()">Add Msg</button>
   <ion-list>
     <ion-list-header>Follow us on Twitter</ion-list-header>
@@ -17,7 +17,7 @@
     </ion-item>
   -->
 
-  <ion-item *ngFor="let message of messages | async | reverse">
+  <ion-item *ngFor="let message of messages | async | reverse" class="message-item">
     <div *ngIf="message">
       <message-detail [msg]="message"></message-detail>
       <button (click)="navigateToDetail(message)"> {{message.payload.val().content}} </button>
