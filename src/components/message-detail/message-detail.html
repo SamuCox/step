@@ -1,24 +1,25 @@
 <!-- Generated template for the MessageDetailComponent component -->
-<ion-card>
+<ion-card class="message-card">
 	<ion-card-header> {{time.month}}.{{time.date}} </ion-card-header>
+	<br>
+
 	<ion-card-content *ngIf="sections">
 		<div class="section-wrapper" *ngFor="let section of displayedSections; let idx = index" id="section{{idx}}">
+			<br>
 			<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
 			<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
 			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
-			<ion-label>{{section.type}}hahahah</ion-label>
 
 			<ion-list class="sruvey-wrapper" *ngFor="let question of section.survey">
-				balabala
-				<ion-label>{{question.question}}</ion-label>
+				
+				<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 				
 				<ion-item *ngIf=" question.type == 'field'">
 					<ion-input [(ngModel)]="field[question.index]" type="text"></ion-input>
 				</ion-item>
 
-				<ion-item *ngIf="question.type == 'likert'">
-					
+				<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
 					<ion-range min="1" max="7" color="secondary" pin="true" snaps="true">
 						<ion-label range-left>1</ion-label>
 						<ion-label range-right>7</ion-label>
@@ -32,7 +33,8 @@
 				</ion-list>
 			</ion-list>
 
-			<button ion-button type="submit" [disabled]="todo.valid" (click)="logForm(idx)">Submit</button>
+			<button ion-button full="true" type="submit" class="submit-button" [disabled]="todo.valid" (click)="logForm(idx)">Submit</button>
+			<br>
 		</div>
 	</ion-card-content>
 </ion-card>

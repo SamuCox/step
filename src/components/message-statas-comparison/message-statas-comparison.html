@@ -1,17 +1,11 @@
 <!-- Generated template for the MessageStatasComparisonComponent component -->
-<div>
+<div class="section-title">
 	Step Comparison
 </div>
 
-<ion-card>
-	<ion-card-header>
-		Comparison
-	</ion-card-header>
-	<ion-card-content text-wrap>
-		<div>
-			Congratulations! Your average step count for this week is {{section?.steps}}, and you've defeated {{percentile}}% users of all.
+<div class="section-description">
+	{{section?.streakDescription}}
+	Congratulations! Your average step count for this week is {{section?.steps}}, and you've defeated {{percentile}}% users of all.
 			<div>{{section?.statsDescription}}</div>
 			<div>{{section?.recommendPercentile}}% users walked an average step count of {{recommendSteps}} in the past 7 days. Follow their beat!</div>
-		</div>
-	</ion-card-content>
-</ion-card>
+</div>

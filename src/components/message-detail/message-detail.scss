@@ -12,4 +12,56 @@ message-detail {
 	.range-md .range-bar {
 		border-radius: 10px !important;
 	}
+
+	.message-card {
+		border-radius: 10px;
+	}
+
+	ion-card-header {
+		font-size: 40px !important;
+		border-bottom: 1px solid color($colors, light);
+	}
+
+	.section-title {
+		font-size: 15px !important;
+		font-weight: bold !important;
+		text-align: center;
+		width: 100%;
+	}
+
+	.section-title:after {
+		display: inline-block;
+		margin: 0 0 5px 5px;
+		height: 1px;
+		content: " ";
+		text-shadow: none;
+		background-color: #999;
+		width: 30px;
+	}
+
+	.section-title:before {
+		display: inline-block;
+		margin: 0 5px 5px 0px;
+		height: 1px;
+		content: " ";
+		text-shadow: none;
+		background-color: #999;
+		width: 30px;
+	}
+
+	.survey-question {
+		margin-bottom: 0px;
+	}
+
+	.survey-answer {
+		margin-top: 0px;
+	}
+
+	.submit-button {
+		margin-top: 50px;
+	}
+
+	.section-wrapper {
+		border-bottom: 1px solid color($colors, light);
+	}
 }
