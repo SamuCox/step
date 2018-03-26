@@ -1,5 +1,5 @@
 <!-- Generated template for the MessageDetailComponent component -->
-<ion-card class="message-card">
+<ion-card class="message-card fadeIn">
 	<ion-card-header> {{time.month}}.{{time.date}} </ion-card-header>
 	<br>
 
@@ -12,8 +12,8 @@
 			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
 
 			<ion-list>
-				<div class="sruvey-wrapper" *ngFor="let question of section.survey; let qidx = index">
-					<ion-card class="question-wrapper" *ngIf="currentQIDs[idx] == qidx">
+				<div class="survey-wrapper" *ngFor="let question of section.survey; let qidx = index">
+					<ion-card class="question-wrapper fadeIn" *ngIf="currentQIDs[idx] == qidx">
 
 						<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 
