@@ -11,7 +11,7 @@
 			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
 
-			<ion-slides class="survey-list-wrapper">
+			<ion-slides pager class="survey-list-wrapper">
 				<ion-slide class="survey-wrapper" *ngFor="let question of section.survey; let qidx = index">
 					<div class="question-wrapper fadeIn">
 

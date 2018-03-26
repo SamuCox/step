@@ -1,10 +1,15 @@
 message-detail {
 	.survey-wrapper {
-		
+		margin-top: 25px;
 	}
 
 	.question-button-group {
 		margin-top: 40px;
+	}
+
+	.swiper-pagination {
+		top:0px;
+		bottom:inherit;
 	}
 
 	.survey-list-wrapper {
@@ -86,24 +91,24 @@ message-detail {
 	}
 
 	@keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
 
-  .fadeIn {
-    animation-name: fadeIn;
-    animation-duration: 2s;
-  }
+	.fadeIn {
+		animation-name: fadeIn;
+		animation-duration: 2s;
+	}
 
 	.question-wrapper{
 		//padding: 20px;
 	}
 
-//range
+	//range
 	.range-md .range-bar {
 		border-radius: 10px !important;
 		margin-left: -15px;
@@ -113,15 +118,15 @@ message-detail {
 	.range-md .range-tick {
 		//border-color: white;
 		//border-style: solid;
-    //border-width: 2px;
-    background: #888;
-    //padding-left: 10px;
+		//border-width: 2px;
+		background: #888;
+		//padding-left: 10px;
 	}
 
 	.range-md .range-knob {
 		border-color: white;
 		border-style: solid;
-    border-width: 2px;
-    background: #c4c4c4 !important;
+		border-width: 2px;
+		background: #c4c4c4 !important;
 	}
 }
