@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import * as moment from 'moment';
 
 /**
  * Generated class for the MessageDetailComponent component.
@@ -27,7 +28,8 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
  	currentQIDs = [0, 0, 0, 0, 0];
 
  	likert = [5, 5, 5];
- 	mcq = [1];
+ 	mcq = [0];
+ 	mcqModel : any;
  	field = ["I feel"];
 
  	valid = true;
@@ -42,6 +44,10 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
  	time : any;
 
  	constructor() {
+ 	}
+
+ 	getMonthName(index: number) {
+ 		return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][index-1];
  	}
 
  	ngOnChanges(changes: any) {
@@ -76,6 +82,11 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
  	updateMCQChoice(questionID: number, selected: number) {
  		this.mcq[questionID] = selected;
+ 	}
+
+ 	mcqAnswer(value)
+ 	{
+ 		console.log(value);
  	}
 
  }

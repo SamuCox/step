@@ -34,6 +34,8 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { NouisliderModule } from "ng2-nouislider";
 
+import * as moment from 'moment';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDhDTAneynml0xSi2mNIXJ8yuryl-hJOz0",

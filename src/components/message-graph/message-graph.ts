@@ -76,6 +76,7 @@ import { ViewController } from 'ionic-angular';
 
       const maxStepCount = Math.max(...this.section.steps);
       var maxYAxis = maxStepCount > 10000 ? Math.ceil(maxStepCount/1000)*1000 : 10000;
+      const colorArray = this.initializeBarColors();
 
       this.barChart = new Chart(this.barCanvas.nativeElement, {
 
@@ -85,7 +86,7 @@ import { ViewController } from 'ionic-angular';
           datasets: [{
             label: 'Step Count',
             data: this.section.steps,
-            backgroundColor: this.initializeBarColors(),
+            backgroundColor: colorArray,
             borderColor: [
             'rgba(255,99,132,1)'
             ],
