@@ -27,9 +27,8 @@ import * as moment from 'moment';
  	//todo from server
  	currentQIDs = [0, 0, 0, 0, 0];
 
- 	likert = [5, 5, 5];
- 	mcq = [0];
- 	mcqModel : any;
+ 	likert = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4];
+ 	mcq = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
  	field = ["I feel"];
 
  	valid = true;
