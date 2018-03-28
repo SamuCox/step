@@ -17,23 +17,27 @@ import * as moment from 'moment';
  })
  export class MessageDetailComponent {
 
- 	@Input() msg: AngularFireAction<DatabaseSnapshot>;
+ 	//@Input() msg: AngularFireAction<DatabaseSnapshot>;
  	@ViewChild(Content) pageContent: Content;
 
+ 	private _msg: AngularFireAction<DatabaseSnapshot>;
+ 	@Input() set msg(value: AngularFireAction<DatabaseSnapshot>) {
+ 		this._msg = value;
+ 		console.log("msg came in!");
+ 		//this.initializeGraph();
+ 	}
+
+ 	get msg(): AngularFireAction<DatabaseSnapshot> {
+ 		return this._msg;
+ 	}
+
  	private todo : FormGroup;
+ 	valid = true;
 
  	survey = [];
 
  	//todo from server
  	currentQIDs = [0, 0, 0, 0, 0];
-
- 	likert = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4];
- 	mcq = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
- 	field = ["I feel"];
-
- 	valid = true;
-
- 	text: string;
 
  	title : string;
  	content : string;
@@ -64,6 +68,8 @@ import * as moment from 'moment';
  			this.displayedSections.push(this.sections[this.progressIndex]);
  			this.scrollTo("section" + idx);
  		}
+
+ 		//todo: upload answers & update statue to firebase - validate? - push answers one by one (answer = category[index])
  		console.log("index == " + idx);
  	}
 
@@ -77,15 +83,6 @@ import * as moment from 'moment';
  	scrollTo(elementId:string) {
  		//let yOffset = document.getElementById(elementId).offsetTop + document.getElementById(elementId).offsetHeight;
  		//this.pageContent.scrollTo(0, yOffset, 4000);
- 	}
-
- 	updateMCQChoice(questionID: number, selected: number) {
- 		this.mcq[questionID] = selected;
- 	}
-
- 	mcqAnswer(value)
- 	{
- 		console.log(value);
  	}
 
  }

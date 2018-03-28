@@ -10,51 +10,14 @@
 			<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
 			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
-
-			<div class="questionnaire-icon">
-				<ion-icon name="clipboard"></ion-icon>
+			<message-survey *ngIf="section.survey" [survey]="section.survey"></message-survey>
+			<div class="question-button-group">
+				<button ion-button (click)="logForm(idx)"><</button>
+				<button ion-button (click)="nextQuestion(idx, qidx)">Next</button>
 			</div>
-			<ion-slides pager class="survey-list-wrapper">
-				<ion-slide class="survey-wrapper" *ngFor="let question of section.survey; let qidx = index">
-					<div class="question-wrapper fadeIn">
 
-						<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
-
-						<ion-item *ngIf=" question.type == 'field'">
-							<ion-input [(ngModel)]="field[question.index]" type="text"></ion-input>
-						</ion-item>
-
-						<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
-							<ion-range min="1" max="7" color="mid" pin="true" snaps="true" [(ngModel)]="likert[question.index]">
-								<ion-label range-left>1</ion-label>
-								<ion-label range-right>7</ion-label>
-							</ion-range>
-						</ion-item>
-
-						<ion-list radio-group [(ngModel)]="mcq[question.index]" *ngIf="question.type == 'mcq'">
-							<ion-item *ngFor="let option of question.options; let oidx = index">
-								<ion-label>{{option}}</ion-label>
-								<ion-radio value="{{oidx}}"></ion-radio>
-							</ion-item>
-						</ion-list>
-
-						<!--
-						<ion-list *ngIf="question.type == 'mcq'">
-							<button ion-button (click)="updateMCQChoice(question.index, idx)" *ngFor="let option of question.options; let idx = index">
-								{{option}}
-							</button>
-						</ion-list>
-					-->
-				</div>
-			</ion-slide>
-		</ion-slides>
-		<div class="question-button-group">
-			<button ion-button (click)="logForm(idx)"><</button>
-			<button ion-button (click)="nextQuestion(idx, qidx)">Next</button>
+			<button ion-button full="true" type="submit" class="submit-button" [disabled]="!valid" (click)="logForm(idx)">Next Section</button>
+			<br>
 		</div>
-
-		<button ion-button full="true" type="submit" class="submit-button" [disabled]="!valid" (click)="logForm(idx)">Next Section</button>
-		<br>
-	</div>
-</ion-card-content>
+	</ion-card-content>
 </ion-card>

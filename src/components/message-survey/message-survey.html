@@ -1,0 +1,30 @@
+<div class="questionnaire-icon">
+	<ion-icon name="clipboard"></ion-icon>
+</div>
+
+<ion-slides pager class="survey-list-wrapper">
+	<ion-slide class="survey-wrapper" *ngFor="let question of survey; let qidx = index">
+		<div class="question-wrapper fadeIn" *ngIf="question">
+
+			<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
+
+			<ion-item *ngIf=" question.type == 'field'">
+				<ion-input [(ngModel)]="answers[qidx]" type="text"></ion-input>
+			</ion-item>
+
+			<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
+				<ion-range min="1" max="7" color="mid" pin="true" snaps="true" [(ngModel)]="answers[qidx]">
+					<ion-label range-left>1</ion-label>
+					<ion-label range-right>7</ion-label>
+				</ion-range>
+			</ion-item>
+
+			<ion-list radio-group [(ngModel)]="answers[qidx]" *ngIf="question.type == 'mcq'" (ionChange)="mcqAnswer()">
+				<ion-item *ngFor="let option of question.options">
+					<ion-label>{{option}}</ion-label>
+					<ion-radio value="{{option}}"></ion-radio>
+				</ion-item>
+			</ion-list>
+		</div>
+	</ion-slide>
+</ion-slides>

@@ -27,6 +27,7 @@ import { MessageGraphComponent } from "../components/message-graph/message-graph
 import { MessageChallengeComponent } from "../components/message-challenge/message-challenge";
 import { MessageStreakComparisonComponent } from "../components/message-streak-comparison/message-streak-comparison";
 import { MessageStatasComparisonComponent } from "../components/message-statas-comparison/message-statas-comparison";
+import { MessageSurveyComponent } from "../components/message-survey/message-survey";
 
 import { MainPipe } from "../app/main-pipe.module";
 import { FcmProvider } from '../providers/fcm/fcm';
@@ -60,7 +61,8 @@ export const firebaseConfig = {
     MessageGraphComponent,
     MessageChallengeComponent,
     MessageStreakComparisonComponent,
-    MessageStatasComparisonComponent
+    MessageStatasComparisonComponent,
+    MessageSurveyComponent
   ],
   imports: [
     BrowserModule,

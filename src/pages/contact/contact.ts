@@ -42,6 +42,7 @@ export class ContactPage {
 			uid: this.authProvider.currentUID(),
 			content: "hehahah",
 			time: {date: 15, month: 2, year: 2018},
+			hasCompleted: false,
 			sections: [{
 				type : "graph",
 				startTime : "2018-02-08",
@@ -97,15 +98,21 @@ export class ContactPage {
 				survey : [{
 					index : 0,
 					type : "field",
-					question : "How do you feel when looking at the comparison?"
+					question : "How do you feel when looking at the comparison?",
+					isAnswered : false,
+					answer : ""
 				}, {
 					index : 0,
 					type : "likert",
-					question : "To what extent do you feel inferior after seeing comparisons to other users?"
+					question : "To what extent do you feel inferior after seeing comparisons to other users?",
+					isAnswered : false,
+					answer : ""
 				}, {
 					index : 1,
 					type : "likert",
-					question : "To what extent do you feel encouraged after seeing comparisons to other users?"
+					question : "To what extent do you feel encouraged after seeing comparisons to other users?",
+					isAnswered : false,
+					answer : ""
 				}, {
 					index : 0,
 					type : "mcq",
@@ -115,17 +122,31 @@ export class ContactPage {
 					answer : ""
 				}]
 			}, {
-				type : "tip",
-				special : "Do you know you are fast?",
-				content : "By walking 10000 steps every day, you can become stronger"
-			}, {
 				type : "challenge",
-				title: "Walk 10 min",
-				category: "leisure",
-				content : "Go for a 10 min walk today",
-				fun : 5,
-				difficulty : 2,
-				complete: false
+				hasPicked : false,
+				pickedIdx : 0,
+				hasCompleted : false,
+				options : [
+				{
+					title: "Walk 10 min",
+					category: "leisure",
+					content : "Go for a 10 min walk today",
+					fun : 5,
+					difficulty : 2
+				}, {
+					title: "Listen to music and run",
+					category: "leisure",
+					content : "Listen to 5 songs and run",
+					fun : 5,
+					difficulty : 3
+				}, {
+					title: "Find a friend to walk",
+					category: "Social",
+					content : "Contact your best friend and go for a short walk together!",
+					fun : 4,
+					difficulty : 2
+				}
+				]
 			}
 			]
 		})
@@ -140,8 +161,8 @@ export class ContactPage {
 
 	navigateToDetail(message: any) {
 		this.navCtrl.push(MessageDetailPage, {
-      message: message
-    });
+			message: message
+		});
 	}
 
 }
