@@ -1,21 +1,69 @@
 message-survey {
 
-	.questionnaire-icon {
+	.question-icon:after {
+		display: inline-block;
+		margin: 0 0 5px 5px;
+		height: 1px;
+		content: " ";
+		text-shadow: none;
+		background-color: #999;
+		width: 15px;
+	}
+
+	.question-icon:before {
+		display: inline-block;
+		margin: 0 5px 5px 0px;
+		height: 1px;
+		content: " ";
+		text-shadow: none;
+		background-color: #999;
+		width: 15px;
+	}
+
+	.survey-outside-wrapper {
+		margin-top: 20px;
+		margin-bottom: 0px;
+	}
+
+	.attach-icon {
 		display: block;
 		text-align: center;
 		font-size: 35px;
-		//background-color: red;
-		border-radius: 40px;
-		
+		color: color($colors, dark);
+		position: relative;
 		padding-top: 5px;
 		margin-top: 20px;
 
 		ion-icon {
 			margin-left: auto;
 			margin-right: auto;
-			width: 60px;
-			height: 60px;
+			position: absolute;
+			top: -18px;
+			//width: 5px;
+			//left: 10px;
 		}
+	}
+
+	.question-icon {
+		display: block;
+		text-align: center;
+		font-size: 35px;
+		color: color($colors, dark);
+		position: relative;
+		padding-top: 5px;
+		margin-top: 20px;
+
+		ion-icon {
+			margin-left: auto;
+			margin-right: auto;
+			//width: 5px;
+			//left: 10px;
+		}
+	}
+
+	.survey-header {
+		height: 15px;
+		background-color: color($colors, icon);
 	}
 
 	.survey-wrapper {
@@ -33,12 +81,20 @@ message-survey {
 
 	.survey-list-wrapper {
 		//background: black;
-		margin: 0px 0px 20px 0px;
+		margin: 0px 0px 0px 0px;
 		padding: 10px 20px 20px 20px;
 		background: color($colors, light);
 		color: color($colors, dark);
 		font-size: 20px;
 		//background: linear-gradient(#fdae84, #e2b49a);
+	}
+
+	.question-button-group {
+		margin-top: 5px;
+
+		button {
+			background: color($colors, icon);
+		}
 	}
 
 	.section-wrapper {

@@ -6,15 +6,12 @@
 	<ion-card-content *ngIf="sections">
 		<div class="section-wrapper" *ngFor="let section of displayedSections; let idx = index" id="section{{idx}}">
 			<br>
+			
 			<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
 			<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
 			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section"> </message-challenge>
 			<message-survey *ngIf="section.survey" [survey]="section.survey"></message-survey>
-			<div class="question-button-group">
-				<button ion-button (click)="logForm(idx)"><</button>
-				<button ion-button (click)="nextQuestion(idx, qidx)">Next</button>
-			</div>
 
 			<button ion-button full="true" type="submit" class="submit-button" [disabled]="!valid" (click)="logForm(idx)">Next Section</button>
 			<br>

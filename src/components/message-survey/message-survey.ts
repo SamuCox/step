@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
+import { Slides } from 'ionic-angular';
 
 /**
  * Generated class for the MessageSurveyComponent component.
@@ -14,6 +15,8 @@ import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapsh
 export class MessageSurveyComponent {
 
   private _survey: any;
+  @ViewChild(Slides) slides: Slides;
+  @ViewChild('barCanvas') barCanvas;
  	@Input() set survey(value: any) {
  		this._survey = value;
  		console.log("msg came in!");
@@ -52,4 +55,12 @@ export class MessageSurveyComponent {
   public mcqAnswer() {
   	console.log("emm");
   }
+
+  nextQuestion() {
+     this.slides.slideNext(500, true);
+   }
+
+  prevQuestion() {
+    this.slides.slidePrev(500, true);
+   }
 }

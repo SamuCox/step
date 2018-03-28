@@ -73,13 +73,6 @@ import * as moment from 'moment';
  		console.log("index == " + idx);
  	}
 
- 	nextQuestion(sectionIdx: number, questionIdx: number) {
- 		if (this.sections[sectionIdx].survey != null && this.currentQIDs[sectionIdx] < this.sections[sectionIdx].survey.length - 1) {
- 			this.currentQIDs[sectionIdx]++;
- 			console.log("next Q!: " + this.currentQIDs[sectionIdx]);
- 		}
- 	}
-
  	scrollTo(elementId:string) {
  		//let yOffset = document.getElementById(elementId).offsetTop + document.getElementById(elementId).offsetHeight;
  		//this.pageContent.scrollTo(0, yOffset, 4000);
