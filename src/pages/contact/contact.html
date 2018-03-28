@@ -12,7 +12,6 @@
   <div *ngFor="let message of messages | async | reverse" class="message-item">
     <div *ngIf="message">
       <message-detail [msg]="message"></message-detail>
-      <button (click)="navigateToDetail(message)"> {{message.payload.val().content}} </button>
     </div>
   </div>
 

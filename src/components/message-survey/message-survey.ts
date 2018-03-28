@@ -17,7 +17,7 @@ export class MessageSurveyComponent {
  	@Input() set survey(value: any) {
  		this._survey = value;
  		console.log("msg came in!");
- 		console.log("msg wut" + value);
+ 		console.log("msg wut" + value.length);
  		this.initializeAnswerArrays(value.length);
 
  		// initialize answer based on question type
