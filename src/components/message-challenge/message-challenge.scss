@@ -1,3 +1,97 @@
 message-challenge {
+	ion-card-content {
+		padding: 0px;
+	}
 
+	ion-card ion-card-header {
+		font-size: 20px !important;
+	}
+
+	ion-card {
+		margin-bottom: 0px !important;
+	}
+
+	.pre-survey {
+		background: color($colors, light);
+
+		hr {
+			margin: 0px;
+		}
+	}
+
+	.swiper-pagination {
+		top:0px;
+		bottom:inherit;
+	}
+
+	.range-md .range-bar {
+		border-radius: 10px !important;
+		margin-top: 0px;
+	}
+
+	//range
+	.range-md .range-bar {
+		border-radius: 10px !important;
+		margin-left: -15px;
+		width: 110%;
+	}
+
+	.range-md .range-tick {
+		//border-color: white;
+		//border-style: solid;
+		//border-width: 2px;
+		background: #888;
+		//padding-left: 10px;
+	}
+
+	.range-md .range-knob {
+		border-color: white;
+		border-style: solid;
+		border-width: 2px;
+		background: #c4c4c4 !important;
+	}
+
+	ion-label {
+		margin-bottom: 0px !important;
+	}
+
+	ion-range {
+		margin-top: 0px !important;
+	}
+
+	.survey-list-wrapper {
+		margin-bottom: 0px !important;
+	}
+
+	.survey-wrapper {
+		padding-top: 20px;
+	}
+
+	.pre-survey {
+		padding-top: 5px;
+		margin-bottom: 0px;
+	}
+
+	.question-button-group {
+		margin-top: 0px;
+
+		button {
+			background: color($colors, icon);
+		}
+	}
+
+	.challenge-button {
+		margin-top: 0px;
+		margin-bottom: 0px;
+		color: white;
+		height: 50px;
+	}
+
+	.swiper-button-next {
+		right: -15px;
+	}
+
+	.swiper-button-prev {
+		left: -15px;
+	}
 }

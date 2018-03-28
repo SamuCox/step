@@ -44,6 +44,7 @@ message-detail {
 
 	.section-wrapper {
 		border-bottom: 1px solid color($colors, light);
+		padding: 20px;
 	}
 
 	@keyframes fadeIn {
@@ -64,6 +65,16 @@ message-detail {
 		float: right;
 		margin-bottom: 20px;
 		margin-top: 0px;
+	}
+
+	.message-card {
+		padding: 0px !important;
+		overflow: visible;
+
+		ion-card-content {
+			padding: 0px !important;
+			overflow: visible;
+		}
 	}
 
 }

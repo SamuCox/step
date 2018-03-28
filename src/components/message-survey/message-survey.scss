@@ -102,10 +102,6 @@ message-survey {
 		padding: 0px;
 	}
 
-	.range-md .range-bar {
-		border-radius: 10px !important;
-	}
-
 	.message-card {
 		border-radius: 10px;
 		padding: 0px !important;
@@ -121,6 +117,10 @@ message-survey {
 
 	.question-wrapper{
 		//padding: 20px;
+	}
+
+	.range-md .range-bar {
+		border-radius: 10px !important;
 	}
 
 	//range

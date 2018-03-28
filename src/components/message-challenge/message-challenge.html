@@ -1,35 +1,53 @@
 <!-- Generated template for the MessageChallengeComponent component -->
-<div>
-	Challenge Card
+<div class="section-title">
+	Daily Challenge
 </div>
 
-<ion-card>
-	<ion-card-header>
-		{{section?.title}}
-	</ion-card-header>
-	<ion-card-content>
-		<p>{{section?.content}}</p>
-		<hr>
-		<p>{{section?.category}}</p>
-		<ion-grid>
-			<ion-row>
-				<ion-col>
-					Difficulty: {{section?.difficulty}}
-				</ion-col>
-				<ion-col>
-					Fun: {{section?.fun}}
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-		<ion-grid>
-			<ion-row>
-				<ion-col>
-					<button (click)="completeChallenge()">Complete</button>
-				</ion-col>
-				<ion-col>
-					<button>Give Up</button>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</ion-card-content>
-</ion-card>
+<ion-slides pager class="survey-list-wrapper" *ngIf="section">
+	<ion-slide #surveySlider class="survey-wrapper" *ngFor="let challenge of section.options; let cidx = index">
+
+		<ion-card>
+			<ion-card-header>
+				{{challenge.title}}
+			</ion-card-header>
+			<ion-card-content>
+				<p>{{challenge.content}}</p>
+				<hr>
+				<p>{{challenge.category}}</p>
+				<ion-grid>
+					<ion-row>
+						<ion-col>
+							Difficulty: {{challenge.difficulty}}
+						</ion-col>
+						<ion-col>
+							Fun: {{challenge.fun}}
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+
+			<div *ngIf="answers" class="pre-survey">
+				<div *ngFor="let question of section.pre_survey; let qidx = index" >
+					<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
+					<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
+						<ion-range min="1" max="7" color="mid" pin="true" snaps="true" [(ngModel)]="answers[cidx][qidx]">
+							<ion-label range-left>1</ion-label>
+							<ion-label range-right>7</ion-label>
+						</ion-range>
+					</ion-item>
+					<hr>
+				</div>
+			</div>
+
+			<button ion-button full color="engage" class="challenge-button" (click)="prevChallenge()">Accept this challenge!</button>
+		</ion-card>
+		<!--
+		<button ion-button (click)="nextChallenge()" class="swiper-button-next"></button>
+		<button ion-button (click)="prevChallenge()" class="swiper-button-prev"></button> -->
+	</ion-slide>
+</ion-slides>
+
+<div class="question-button-group">
+	<button ion-button (click)="prevChallenge()"><</button>
+	<button ion-button (click)="nextChallenge()">Next</button>
+</div>
