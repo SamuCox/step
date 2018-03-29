@@ -52,11 +52,6 @@ import { Slides } from 'ionic-angular';
  		}) */
  	}
 
- 	completeChallenge() {
- 		this.section.complete = true;
- 		console.log("complete challenge");
- 	}
-
  	nextChallenge() {
      this.slides.slideNext(500, true);
    }
@@ -64,5 +59,20 @@ import { Slides } from 'ionic-angular';
   prevChallenge() {
     this.slides.slidePrev(500, true);
    }
+
+  acceptChallenge(cidx: number) {
+  	this.section.hasPicked = true;
+  	this.section.pickedIdx = cidx;
+  }
+
+  completeChallenge() {
+ 		this.section.hasCompleted = true;
+ 		console.log("complete challenge");
+ 	}
+
+ 	giveupChallenge() {
+ 		this.section.hasGivenup = true;
+ 	}
+
 
  }

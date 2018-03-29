@@ -3,7 +3,7 @@
 	Daily Challenge
 </div>
 
-<ion-slides pager class="survey-list-wrapper" *ngIf="section">
+<ion-slides pager class="survey-list-wrapper" *ngIf="section && !section.hasCompleted">
 	<ion-slide #surveySlider class="survey-wrapper" *ngFor="let challenge of section.options; let cidx = index">
 
 		<ion-card>
@@ -26,7 +26,7 @@
 				</ion-grid>
 			</ion-card-content>
 
-			<div *ngIf="answers" class="pre-survey">
+			<div *ngIf="!section.hasPicked && answers" class="pre-survey">
 				<div *ngFor="let question of section.pre_survey; let qidx = index" >
 					<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 					<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
@@ -39,11 +39,13 @@
 				</div>
 			</div>
 
-			<button ion-button full color="engage" class="challenge-button" (click)="prevChallenge()">Accept this challenge!</button>
+			<button ion-button full color="engage" class="challenge-button" (click)="acceptChallenge(cidx)" *ngIf="section.hasPicked && cidx!=section.pickedIdx">Accept this challenge!</button>
+
+			<div class="challenge-button-group" *ngIf="section.hasPicked && cidx==section.pickedIdx">
+				<button ion-button full color="engage" class="challenge-button" (click)="completeChallenge()" >Complete this challenge!</button>
+				<button ion-button full color="engage" class="challenge-button" (click)="giveupChallenge()">Give up</button>
+			</div>
 		</ion-card>
-		<!--
-		<button ion-button (click)="nextChallenge()" class="swiper-button-next"></button>
-		<button ion-button (click)="prevChallenge()" class="swiper-button-prev"></button> -->
 	</ion-slide>
 </ion-slides>
 
