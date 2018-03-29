@@ -60,12 +60,12 @@
 	<div *ngFor="let challenge of section.options; let cidx = index">
 		<ion-card *ngIf="cidx == section.pickedIdx">
 			<ion-card-header>
-				{{challenge.title}}
+				{{challenge.content}}
+				<p>{{challenge.category}}</p>
 			</ion-card-header>
 			<ion-card-content>
-				<p>{{challenge.content}}</p>
+				<!-- <p>{{challenge.content}}</p> -->
 				<hr>
-				<p>{{challenge.category}}</p>
 				<ion-grid>
 					<ion-row>
 						<ion-col>
