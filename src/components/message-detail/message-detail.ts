@@ -17,6 +17,8 @@ import * as moment from 'moment';
  })
  export class MessageDetailComponent {
 
+ 	//@Input() public messageId: string;
+
  	//@Input() msg: AngularFireAction<DatabaseSnapshot>;
  	@ViewChild(Content) pageContent: Content;
 
@@ -35,6 +37,7 @@ import * as moment from 'moment';
  	valid = true;
 
  	survey = [];
+ 	messageId: string;
 
  	//todo from server
  	currentQIDs = [0, 0, 0, 0, 0];
@@ -56,6 +59,7 @@ import * as moment from 'moment';
  	ngOnChanges(changes: any) {
  		this.content = this.msg.payload.val().content;
  		console.log("content: " + this.content);
+ 		this.messageId = this.msg.payload.key;
  		this.sections = this.msg.payload.val().sections;
  		console.log("length: " + this.sections.length);
  		this.time = this.msg.payload.val().time;

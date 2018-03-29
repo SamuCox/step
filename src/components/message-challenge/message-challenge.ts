@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
+import { DatabaseHelperProvider } from '../../providers/database-helper/database-helper';
 
 /**
  * Generated class for the MessageChallengeComponent component.
@@ -12,6 +13,10 @@ import { Slides } from 'ionic-angular';
  	templateUrl: 'message-challenge.html'
  })
  export class MessageChallengeComponent {
+
+ 	// retrieve info
+ 	@Input() public sectionId: number;
+ 	@Input() public messageId: string;
 
  	private _section: any;
 	@Input() set section(value: any) {
@@ -31,7 +36,7 @@ import { Slides } from 'ionic-angular';
 
  	public answers: (string|number)[][] = null;
 
- 	constructor() {
+ 	constructor(public dbHelperProvider: DatabaseHelperProvider) {
  		
  	}
 
@@ -61,8 +66,14 @@ import { Slides } from 'ionic-angular';
    }
 
   acceptChallenge(cidx: number) {
-  	this.section.hasPicked = true;
-  	this.section.pickedIdx = cidx;
+  	console.log("accept! SID: " + this.sectionId);
+  	console.log("accept! MID: " + this.messageId);
+
+  	//this.section.hasPicked = true;
+  	//this.section.pickedIdx = cidx;
+  	var path = `${this.messageId}/sections/${this.sectionId}`;
+  	this.dbHelperProvider.updateMessage(path, {hasPicked: true});
+  	console.log("accept challenge");
   }
 
   completeChallenge() {

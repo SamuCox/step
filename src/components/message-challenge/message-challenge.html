@@ -39,7 +39,7 @@
 				</div>
 			</div>
 
-			<button ion-button full color="engage" class="challenge-button" (click)="acceptChallenge(cidx)" *ngIf="section.hasPicked && cidx!=section.pickedIdx">Accept this challenge!</button>
+			<button ion-button full color="engage" class="challenge-button" (click)="acceptChallenge(cidx)" *ngIf="!section.hasPicked || (section.hasPicked && cidx!=section.pickedIdx)">Accept this challenge!</button>
 
 			<div class="challenge-button-group" *ngIf="section.hasPicked && cidx==section.pickedIdx">
 				<button ion-button full color="engage" class="challenge-button" (click)="completeChallenge()" >Complete this challenge!</button>

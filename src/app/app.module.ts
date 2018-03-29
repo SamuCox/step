@@ -36,6 +36,7 @@ import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { NouisliderModule } from "ng2-nouislider";
 
 import * as moment from 'moment';
+import { DatabaseHelperProvider } from '../providers/database-helper/database-helper';
 
 
 export const firebaseConfig = {
@@ -92,7 +93,8 @@ export const firebaseConfig = {
     AuthProvider,
     Health,
     Firebase,
-    FcmProvider
+    FcmProvider,
+    DatabaseHelperProvider
   ]
 })
 export class AppModule {}
