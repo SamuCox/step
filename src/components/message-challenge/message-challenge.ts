@@ -78,11 +78,16 @@ import { DatabaseHelperProvider } from '../../providers/database-helper/database
 
   completeChallenge() {
  		this.section.hasCompleted = true;
+ 		var path = `${this.messageId}/sections/${this.sectionId}`;
+  	this.dbHelperProvider.updateMessage(path, {hasCompleted: true});
  		console.log("complete challenge");
  	}
 
  	giveupChallenge() {
  		this.section.hasGivenup = true;
+ 		var path = `${this.messageId}/sections/${this.sectionId}`;
+  	this.dbHelperProvider.updateMessage(path, {hasGivenup: true});
+ 		console.log("give up challenge");
  	}
 
 
