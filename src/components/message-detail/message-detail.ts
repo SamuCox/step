@@ -27,6 +27,26 @@ import * as moment from 'moment';
  		this._msg = value;
  		console.log("msg came in!");
  		//this.initializeGraph();
+ 		if (this.content = value.payload.val().content) {
+
+ 		}
+ 		//this.content = value.payload.val().content;
+ 		//console.log("content: " + this.content);
+ 		if (this.messageId = value.payload.key) {
+
+ 		}
+ 		if (this.sections = value.payload.val().sections){
+
+ 		}
+ 		console.log("payload sections are: " + this.sections);
+ 		//console.log("length: " + this.sections.length);
+ 		if (this.time = value.payload.val().time) {
+
+ 		}
+
+ 		if (this.sections) {
+ 			this.displayedSections.push(this.sections[0]);
+ 		}
  	}
 
  	get msg(): AngularFireAction<DatabaseSnapshot> {
@@ -57,13 +77,6 @@ import * as moment from 'moment';
  	}
 
  	ngOnChanges(changes: any) {
- 		this.content = this.msg.payload.val().content;
- 		console.log("content: " + this.content);
- 		this.messageId = this.msg.payload.key;
- 		this.sections = this.msg.payload.val().sections;
- 		console.log("length: " + this.sections.length);
- 		this.time = this.msg.payload.val().time;
- 		this.displayedSections.push(this.sections[0]);
  	}
 
  	logForm(idx: number){

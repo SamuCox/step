@@ -1,5 +1,5 @@
 <!-- Generated template for the MessageDetailComponent component -->
-<ion-card class="message-card fadeIn">
+<ion-card *ngIf="time" class="message-card fadeIn">
 	<ion-card-header> {{getMonthName(time.month)}} {{time.date}} </ion-card-header>
 	<br>
 
