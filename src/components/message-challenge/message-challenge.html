@@ -76,6 +76,16 @@
 						</ion-col>
 					</ion-row>
 				</ion-grid>
+
+				<ion-label text-wrap *ngIf="section.hasCompleted">
+					Horray! You've completed the challenge.
+				</ion-label>
+				<ion-label text-wrap *ngIf="section.hasGivenup && section.hasAttempted">
+					You have attempted the challenge, but choose not to complete it.
+				</ion-label>
+				<ion-label text-wrap *ngIf="section.hasGivenup && !section.hasAttempted">
+					You have not attempted the challenge and choose not to complete it.
+				</ion-label>
 			</ion-card-content>
 		</ion-card>
 	</div>
