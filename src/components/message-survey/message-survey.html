@@ -25,15 +25,12 @@
 				</ion-item>
 
 				<ion-grid *ngIf="question.type == 'likert'" class="survey-answer">
-					<ion-row radio-group [(ngModel)]="answers[qidx]">
-						<ion-col>
-							<ion-radio value="friends"></ion-radio>
-						</ion-col>
-						<ion-col>
-							<ion-radio value="ehhe"></ion-radio>
-						</ion-col>
-						<ion-col>
-							<ion-radio value="wea"></ion-radio>
+					<ion-row class="scale-row">
+						<ion-col class="scale-col" *ngFor="let scale of likertScales">{{scale}}</ion-col>
+					</ion-row>
+					<ion-row radio-group [(ngModel)]="answers[qidx]" class="scale-radio-row">
+						<ion-col *ngFor="let scale of likertScales" class="scale-radio-col">
+							<ion-radio value="{{scale}}"></ion-radio>
 						</ion-col>
 					</ion-row>
 				</ion-grid>

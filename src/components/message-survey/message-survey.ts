@@ -31,6 +31,7 @@ export class MessageSurveyComponent {
 
  	public answers: (string|number)[] = [0];
  	public hasAnswered: boolean[] = [false];
+  public likertScales = [1,2,3,4,5,6,7];
 
  	valid = true;
 
