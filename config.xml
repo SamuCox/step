@@ -91,5 +91,8 @@
         <variable name="HEALTH_READ_PERMISSION" value=" " />
         <variable name="HEALTH_WRITE_PERMISSION" value=" " />
     </plugin>
+    <plugin name="cordova-android-play-services-gradle-release" spec="^1.3.0">
+        <variable name="PLAY_SERVICES_VERSION" value="12.0.0" />
+    </plugin>
     <engine name="ios" spec="4.5.4" />
 </widget>
