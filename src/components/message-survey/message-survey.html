@@ -24,12 +24,27 @@
 					<ion-input [(ngModel)]="answers[qidx]" type="text"></ion-input>
 				</ion-item>
 
+				<ion-grid *ngIf="question.type == 'likert'" class="survey-answer">
+					<ion-row radio-group [(ngModel)]="answers[qidx]">
+						<ion-col>
+							<ion-radio value="friends"></ion-radio>
+						</ion-col>
+						<ion-col>
+							<ion-radio value="ehhe"></ion-radio>
+						</ion-col>
+						<ion-col>
+							<ion-radio value="wea"></ion-radio>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+
+				<!--
 				<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
 					<ion-range min="1" max="7" color="mid" pin="true" snaps="true" [(ngModel)]="answers[qidx]">
 						<ion-label range-left>1</ion-label>
 						<ion-label range-right>7</ion-label>
 					</ion-range>
-				</ion-item>
+				</ion-item> -->
 
 				<ion-list radio-group [(ngModel)]="answers[qidx]" *ngIf="question.type == 'mcq'" (ionChange)="mcqAnswer()">
 					<ion-item *ngFor="let option of question.options">

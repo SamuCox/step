@@ -31,7 +31,6 @@
     "angularfire2": "^5.0.0-rc.6",
     "chart.js": "^2.7.1",
     "cordova-android": "7.0.0",
-    "cordova-android-play-services-gradle-release": "^1.2.1",
     "cordova-ios": "4.5.4",
     "cordova-plugin-console": "~1.1.0",
     "cordova-plugin-device": "1.1.4",
@@ -70,7 +69,6 @@
     "cordova-plugin-ionic-keyboard@^2.0.5",
     "cordova-plugin-health@1.0.3",
     "cordova-plugin-health@1.0.0",
-    "cordova-android-play-services-gradle-release",
     "cordova-plugin-health"
   ],
   "cordovaPlatforms": [
@@ -91,7 +89,6 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-console": {},
-      "cordova-android-play-services-gradle-release": {},
       "cordova-plugin-health": {
         "HEALTH_READ_PERMISSION": " ",
         "HEALTH_WRITE_PERMISSION": " "
