@@ -4,7 +4,6 @@ import { Message } from '../../models/message';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, AngularFireObject, DatabaseSnapshot } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import { MessageDetailPage } from '../message-detail/message-detail';
 
 
 
@@ -160,9 +159,6 @@ export class ContactPage {
 
 
 	navigateToDetail(message: any) {
-		this.navCtrl.push(MessageDetailPage, {
-			message: message
-		});
 	}
 
 }

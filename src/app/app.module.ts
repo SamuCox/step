@@ -8,7 +8,6 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
-import { MessageDetailPage } from '../pages/message-detail/message-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +20,6 @@ import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/databas
 import { Health } from '@ionic-native/health';
 import { Firebase } from '@ionic-native/firebase';
 
-import { ComponentsModule} from "../components/components.module";
 import { MessageDetailComponent } from "../components/message-detail/message-detail";
 import { MessageGraphComponent } from "../components/message-graph/message-graph";
 import { MessageChallengeComponent } from "../components/message-challenge/message-challenge";
@@ -57,7 +55,6 @@ export const firebaseConfig = {
     HomePage,
     TabsPage,
     LoginPage,
-    MessageDetailPage,
     MessageDetailComponent,
     MessageGraphComponent,
     MessageChallengeComponent,
@@ -82,8 +79,7 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage,
-    MessageDetailPage
+    LoginPage
   ],
   providers: [
     StatusBar,

@@ -27,6 +27,8 @@ export class HomePage {
 
 	constructor(public navCtrl: NavController, public platform: Platform, public authProvider: AuthProvider, private afAuth: AngularFireAuth, private health: Health, private afDatabase: AngularFireDatabase) {
 		this.platform.ready().then((readySource) => {
+			console.log("if the health is available");
+			this.health.isAvailable().then((available: boolean) => console.log("yes it is? " + available));
 			this.health.requestAuthorization([
 				'steps'
 				])
@@ -38,6 +40,7 @@ export class HomePage {
   		dataType: 'steps',
   		bucket: 'day'})
 				.then(res => {
+					console.log("starting platform ready!");
 					var length = res.length;
 					this.step = res[length - 1].value;
 					var stepArray = [];
