@@ -108,17 +108,17 @@ message-detail {
 		background: color($colors, light);
 	}
 
-	.complete-section-bar {
-		color: green;
-		.progress-step-bar {
-			background: green;
-		}
-	}
-
 	.current-section-bar {
 		color: blue;
 		.progress-step-bar {
 			background: blue;
+		}
+	}
+
+	.complete-section-bar {
+		color: green;
+		.progress-step-bar {
+			background: green;
 		}
 	}
 
