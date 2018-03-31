@@ -1,7 +1,25 @@
 <!-- Generated template for the MessageDetailComponent component -->
 <div *ngIf="time && sections" class="message-detail-wrapper">
 	<ion-card class="message-card fadeIn">
-		<ion-card-header> {{getMonthName(time.month)}} {{time.date}} </ion-card-header>
+		<ion-card-header class="message-header"> 
+			<div class="message-time">{{getMonthName(time.month)}} {{time.date}}</div>
+			<ion-grid class="section-progress-bar">
+				<ion-row>
+					<ion-col>
+						How you walked
+						<div class="progress-step-bar"></div>
+					</ion-col>
+					<ion-col>
+						How you walked
+						<div class="progress-step-bar"></div>
+					</ion-col>
+					<ion-col>
+						How you walked
+						<div class="progress-step-bar"></div>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-header>
 		<br>
 
 		<ion-card-content>

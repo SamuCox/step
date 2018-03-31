@@ -5,9 +5,12 @@ message-detail {
 	}
 
 	ion-card-header {
-		font-size: 40px !important;
+		.message-time {
+			font-size: 40px !important;
+		}
 		border-bottom: 1px solid color($colors, light);
-		margin-bottom: 0px;
+		margin-bottom: 0px !important;
+		padding-bottom: 0px !important;
 	}
 
 	ion-card-content {
@@ -86,6 +89,22 @@ message-detail {
 	.message-detail-wrapper {
 		padding: 0px !important;
 		margin: 0px !important;
+	}
+
+	.section-progress-bar {
+		font-size: 10px;
+		margin-top: 5px;
+		padding: 0px !important;
+
+		ion-col {
+			padding: 0px 5px 0px 5px !important;
+		}
+	}
+
+	.progress-step-bar {
+		height: 6px;
+		width: 100%;
+		background: red;
 	}
 
 }
