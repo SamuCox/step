@@ -95,6 +95,7 @@ message-detail {
 		font-size: 10px;
 		margin-top: 5px;
 		padding: 0px !important;
+		text-align: center;
 
 		ion-col {
 			padding: 0px 5px 0px 5px !important;
@@ -104,7 +105,21 @@ message-detail {
 	.progress-step-bar {
 		height: 6px;
 		width: 100%;
-		background: red;
+		background: color($colors, light);
+	}
+
+	.complete-section-bar {
+		color: green;
+		.progress-step-bar {
+			background: green;
+		}
+	}
+
+	.current-section-bar {
+		color: blue;
+		.progress-step-bar {
+			background: blue;
+		}
 	}
 
 }

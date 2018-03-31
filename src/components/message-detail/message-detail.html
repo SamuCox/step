@@ -5,16 +5,8 @@
 			<div class="message-time">{{getMonthName(time.month)}} {{time.date}}</div>
 			<ion-grid class="section-progress-bar">
 				<ion-row>
-					<ion-col>
-						How you walked
-						<div class="progress-step-bar"></div>
-					</ion-col>
-					<ion-col>
-						How you walked
-						<div class="progress-step-bar"></div>
-					</ion-col>
-					<ion-col>
-						How you walked
+					<ion-col *ngFor="let section of sections; let idx = index" [ngClass]="{'complete-section-bar' : idx != 0 && sections[idx-1].hasFinishedSurvey, 'current-section-bar' : idx == 0 || idx == currentActiveSlide }">
+						{{sectionTitle[idx]}}
 						<div class="progress-step-bar"></div>
 					</ion-col>
 				</ion-row>
@@ -23,7 +15,7 @@
 		<br>
 
 		<ion-card-content>
-			<ion-slides pager>
+			<ion-slides>
 				<ion-slide *ngFor="let section of sections; let idx = index" id="section{{idx}}">
 					<div class="section-wrapper">
 						<br>

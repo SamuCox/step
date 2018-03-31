@@ -55,11 +55,21 @@ import * as moment from 'moment';
  		return this._msg;
  	}
 
+ 	private _currentActiveSlide: number;
+ 	get currentActiveSlide(): number {
+ 		if (this.slides) {
+ 			return this.slides.getActiveIndex();
+ 		} else {
+ 			return 0;
+ 		}
+ 	}
+
  	private todo : FormGroup;
  	valid = true;
 
  	survey = [];
  	messageId: string;
+ 	sectionTitle = ["Your challenge reflection", "How you walked", "Get ready for a new day!"];
 
  	//todo from server
  	currentQIDs = [0, 0, 0, 0, 0];
