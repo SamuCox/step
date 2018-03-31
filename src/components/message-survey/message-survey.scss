@@ -64,6 +64,7 @@ message-survey {
 	.survey-header {
 		height: 15px;
 		background-color: color($colors, icon);
+		margin-bottom: 0px;
 	}
 
 	.survey-wrapper {
@@ -82,12 +83,11 @@ message-survey {
 	.survey-list-wrapper {
 		//background: black;
 		margin: 0px 0px 0px 0px;
-		padding: 0px 20px 0px 20px;
+		padding: 20px 20px 0px 20px;
 		background: color($colors, light);
 		color: color($colors, dark);
 		//font-size: 20px;
 		height: 200px;
-		overflow: scroll;
 		//background: linear-gradient(#fdae84, #e2b49a);
 	}
 
@@ -123,9 +123,7 @@ message-survey {
 
 	.question-wrapper{
 		//padding: 20px;
-		height: 200px;
-		padding: 0px;
-		margin: 0px;
+		//height: 200px;
 	}
 
 	.range-md .range-bar {

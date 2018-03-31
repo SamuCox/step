@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
-import { Slides, Scroll } from 'ionic-angular';
+import { Scroll } from 'ionic-angular';
 
 /**
  * Generated class for the MessageSurveyComponent component.
@@ -15,7 +15,6 @@ import { Slides, Scroll } from 'ionic-angular';
  export class MessageSurveyComponent {
 
    private _survey: any;
-   @ViewChild(Slides) slides: Slides;
    @ViewChild('barCanvas') barCanvas;
    @ViewChild('surveyScroll') scroll: ElementRef;
    @Input() set survey(value: any) {
@@ -69,7 +68,7 @@ import { Slides, Scroll } from 'ionic-angular';
    nextQuestion() {
      if (this.currentQID < this.survey.length - 1) {
        this.currentQID++;
-       this.scrollToQuestion(this.currentQID);
+       //this.scrollToQuestion(this.currentQID);
      }
      console.log("current qid: " + this.currentQID);
    }
@@ -77,7 +76,7 @@ import { Slides, Scroll } from 'ionic-angular';
    prevQuestion() {
      if (this.currentQID > 0) {
        this.currentQID--;
-       this.scrollToQuestion(this.currentQID);
+       //this.scrollToQuestion(this.currentQID);
      }
      console.log("current qid: " + this.currentQID);
    }

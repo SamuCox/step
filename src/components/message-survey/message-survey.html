@@ -14,32 +14,34 @@
 	<div class="survey-header">
 	</div>
 
-	<div #surveyScroll (scroll)="scrollSurvey()" scrollY="true" class="survey-list-wrapper" *ngIf="survey">
+	<div class="survey-list-wrapper" *ngIf="survey">
 		<div class="question-wrapper fadeIn" *ngFor="let question of survey; let qidx = index">
+			<div *ngIf="qidx == currentQID">
 
-			<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
+				<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 
-			<ion-item *ngIf=" question.type == 'field'">
-				<ion-input [(ngModel)]="answers[qidx]" type="text"></ion-input>
-			</ion-item>
-
-			<ion-grid *ngIf="question.type == 'likert'" class="survey-answer">
-				<ion-row class="scale-row">
-					<ion-col class="scale-col" *ngFor="let scale of likertScales">{{scale}}</ion-col>
-				</ion-row>
-				<ion-row radio-group [(ngModel)]="answers[qidx]" class="scale-radio-row">
-					<ion-col *ngFor="let scale of likertScales" class="scale-radio-col">
-						<ion-radio value="{{scale}}"></ion-radio>
-					</ion-col>
-				</ion-row>
-			</ion-grid> 
-
-			<ion-list radio-group [(ngModel)]="answers[qidx]" *ngIf="question.type == 'mcq'" (ionChange)="mcqAnswer()">
-				<ion-item *ngFor="let option of question.options">
-					<ion-label>{{option}}</ion-label>
-					<ion-radio value="{{option}}"></ion-radio>
+				<ion-item *ngIf=" question.type == 'field'">
+					<ion-input [(ngModel)]="answers[qidx]" type="text"></ion-input>
 				</ion-item>
-			</ion-list>
+
+				<ion-grid *ngIf="question.type == 'likert'" class="survey-answer">
+					<ion-row class="scale-row">
+						<ion-col class="scale-col" *ngFor="let scale of likertScales">{{scale}}</ion-col>
+					</ion-row>
+					<ion-row radio-group [(ngModel)]="answers[qidx]" class="scale-radio-row">
+						<ion-col *ngFor="let scale of likertScales" class="scale-radio-col">
+							<ion-radio value="{{scale}}"></ion-radio>
+						</ion-col>
+					</ion-row>
+				</ion-grid> 
+
+				<ion-list radio-group [(ngModel)]="answers[qidx]" *ngIf="question.type == 'mcq'" (ionChange)="mcqAnswer()">
+					<ion-item *ngFor="let option of question.options">
+						<ion-label>{{option}}</ion-label>
+						<ion-radio value="{{option}}"></ion-radio>
+					</ion-item>
+				</ion-list>
+			</div>
 		</div>
 	</div>
 </div>
