@@ -32,9 +32,6 @@ import { ViewController } from 'ionic-angular';
    barChart: any;
 
    constructor(private viewController: ViewController) {
-     this.viewController.didEnter.subscribe(
-       () => { this.initializeGraph();}
-       );
    }
 
    initializeBarColors() {
