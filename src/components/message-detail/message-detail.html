@@ -1,25 +1,31 @@
 <!-- Generated template for the MessageDetailComponent component -->
-<ion-card *ngIf="time" class="message-card fadeIn">
-	<ion-card-header> {{getMonthName(time.month)}} {{time.date}} </ion-card-header>
-	<br>
+<div *ngIf="time && sections" >
+	<ion-card class="message-card fadeIn">
+		<ion-card-header> {{getMonthName(time.month)}} {{time.date}} </ion-card-header>
+		<br>
 
-	<ion-card-content *ngIf="sections">
-		<div class="section-wrapper" *ngFor="let section of displayedSections; let idx = index" id="section{{idx}}">
-			<br>
-			
-			<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
-			<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
-			<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
-			<message-challenge *ngIf=" section.type == 'challenge'" [section]="section" [messageId]="messageId" [sectionId]="idx"> </message-challenge>
-			
-			<message-survey *ngIf="section.type != 'challenge' && section.survey" [survey]="section.survey"></message-survey>
-			<!-- to clear -->
-			<message-survey *ngIf="section.type == 'challenge' && section.complete_survey && section.hasCompleted" [survey]="section.complete_survey"></message-survey>
-			<message-survey *ngIf="section.type == 'challenge' && section.attempted_survey && section.hasGivenup && section.hasAttempted" [survey]="section.attempted_survey"></message-survey>
-			<message-survey *ngIf="section.type == 'challenge' && section.unattempted_survey && section.hasGivenup && !section.hasAttempted" [survey]="section.unattempted_survey"></message-survey>
+		<ion-card-content>
+			<ion-slides pager>
+				<ion-slide *ngFor="let section of sections; let idx = index" id="section{{idx}}">
+					<div class="section-wrapper">
+						<br>
 
-			<button ion-button full="true" type="submit" class="submit-button" [disabled]="!valid" (click)="logForm(idx)">Next Section</button>
-			<br>
-		</div>
-	</ion-card-content>
-</ion-card>
+						<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
+						<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
+						<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
+						<message-challenge *ngIf=" section.type == 'challenge'" [section]="section" [messageId]="messageId" [sectionId]="idx"> </message-challenge>
+
+						<message-survey *ngIf="section.type != 'challenge' && section.survey" [survey]="section.survey"></message-survey>
+						<!-- to clear -->
+						<message-survey *ngIf="section.type == 'challenge' && section.complete_survey && section.hasCompleted" [survey]="section.complete_survey"></message-survey>
+						<message-survey *ngIf="section.type == 'challenge' && section.attempted_survey && section.hasGivenup && section.hasAttempted" [survey]="section.attempted_survey"></message-survey>
+						<message-survey *ngIf="section.type == 'challenge' && section.unattempted_survey && section.hasGivenup && !section.hasAttempted" [survey]="section.unattempted_survey"></message-survey>
+
+						<button ion-button full="true" type="submit" class="submit-button" [disabled]="!valid" (click)="logForm(idx)">Next Section</button>
+						<br>
+					</div>
+				</ion-slide>
+			</ion-slides>
+		</ion-card-content>
+	</ion-card>
+</div>

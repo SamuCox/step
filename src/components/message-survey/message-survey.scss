@@ -86,6 +86,7 @@ message-survey {
 		background: color($colors, light);
 		color: color($colors, dark);
 		font-size: 20px;
+		height: 200px;
 		//background: linear-gradient(#fdae84, #e2b49a);
 	}
 
@@ -117,6 +118,7 @@ message-survey {
 
 	.question-wrapper{
 		//padding: 20px;
+		height: 200px;
 	}
 
 	.range-md .range-bar {

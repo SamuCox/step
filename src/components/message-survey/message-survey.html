@@ -4,54 +4,44 @@
 </div> -->
 
 <div class="survey-outside-wrapper">
+	<!--
 	<div class="attach-icon">
 
-		<!-- <ion-icon name="attach"></ion-icon> -->
 	</div>
 	<div class="question-icon">
 		<ion-icon name="help"></ion-icon>
-	</div>
+	</div> -->
 	<div class="survey-header">
 	</div>
 
-	<ion-slides pager class="survey-list-wrapper">
-		<ion-slide #surveySlider class="survey-wrapper" *ngFor="let question of survey; let qidx = index">
-			<div class="question-wrapper fadeIn" *ngIf="question">
+	<ion-scroll scrollY="true" class="survey-list-wrapper" *ngIf="survey">
+		<div class="question-wrapper fadeIn" *ngFor="let question of survey; let qidx = index">
 
-				<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
+			<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 
-				<ion-item *ngIf=" question.type == 'field'">
-					<ion-input [(ngModel)]="answers[qidx]" type="text"></ion-input>
+			<ion-item *ngIf=" question.type == 'field'">
+				<ion-input [(ngModel)]="answers[qidx]" type="text"></ion-input>
+			</ion-item>
+
+			<ion-grid *ngIf="question.type == 'likert'" class="survey-answer">
+				<ion-row class="scale-row">
+					<ion-col class="scale-col" *ngFor="let scale of likertScales">{{scale}}</ion-col>
+				</ion-row>
+				<ion-row radio-group [(ngModel)]="answers[qidx]" class="scale-radio-row">
+					<ion-col *ngFor="let scale of likertScales" class="scale-radio-col">
+						<ion-radio value="{{scale}}"></ion-radio>
+					</ion-col>
+				</ion-row>
+			</ion-grid> 
+
+			<ion-list radio-group [(ngModel)]="answers[qidx]" *ngIf="question.type == 'mcq'" (ionChange)="mcqAnswer()">
+				<ion-item *ngFor="let option of question.options">
+					<ion-label>{{option}}</ion-label>
+					<ion-radio value="{{option}}"></ion-radio>
 				</ion-item>
-
-				<ion-grid *ngIf="question.type == 'likert'" class="survey-answer">
-					<ion-row class="scale-row">
-						<ion-col class="scale-col" *ngFor="let scale of likertScales">{{scale}}</ion-col>
-					</ion-row>
-					<ion-row radio-group [(ngModel)]="answers[qidx]" class="scale-radio-row">
-						<ion-col *ngFor="let scale of likertScales" class="scale-radio-col">
-							<ion-radio value="{{scale}}"></ion-radio>
-						</ion-col>
-					</ion-row>
-				</ion-grid>
-
-				<!--
-				<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
-					<ion-range min="1" max="7" color="mid" pin="true" snaps="true" [(ngModel)]="answers[qidx]">
-						<ion-label range-left>1</ion-label>
-						<ion-label range-right>7</ion-label>
-					</ion-range>
-				</ion-item> -->
-
-				<ion-list radio-group [(ngModel)]="answers[qidx]" *ngIf="question.type == 'mcq'" (ionChange)="mcqAnswer()">
-					<ion-item *ngFor="let option of question.options">
-						<ion-label>{{option}}</ion-label>
-						<ion-radio value="{{option}}"></ion-radio>
-					</ion-item>
-				</ion-list>
-			</div>
-		</ion-slide>
-	</ion-slides>
+			</ion-list>
+		</div>
+	</ion-scroll>
 
 	<div class="question-button-group">
 		<button ion-button (click)="prevQuestion()"><</button>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firebase } from '@ionic-native/firebase';
 import { Platform } from 'ionic-angular';
-import { Health } from '@ionic-native/health';
 
 /*
   Generated class for the FcmProvider provider.
@@ -12,15 +11,7 @@ import { Health } from '@ionic-native/health';
   @Injectable()
   export class FcmProvider {
 
-  	constructor(public firebaseNative: Firebase, private platform: Platform, public health: Health) {
-      this.platform.ready()
-      .then((readySource) => {
-        console.log('Hello FcmProvider Provider');
-        console.log("health... "+ health);
-        this.health.isAvailable()
-        .then((available: boolean) => console.log("yes it is? in FCM?? " + available))
-        .catch(e => {console.log("steps err " + e)})
-      }).catch(e => {console.log("bigger playform err " + e)});
+  	constructor(public firebaseNative: Firebase, private platform: Platform) {
     }
 
   // Get permission from the user

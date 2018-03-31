@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AuthProvider } from '../../providers/auth/auth';
-import { Health } from '@ionic-native/health';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, AngularFireObject, DatabaseSnapshot } from 'angularfire2/database';
 
 /*
@@ -14,9 +13,8 @@ export class DatabaseHelperProvider {
 
 	messagePrefix: string;
 
-  constructor(public authProvider: AuthProvider, public afDatabase: AngularFireDatabase, public health: Health) {
+  constructor(public authProvider: AuthProvider, public afDatabase: AngularFireDatabase) {
     this.messagePrefix = `/profile/${authProvider.currentUID()}/messages/`
-    console.log("health... "+ health);
   }
 
 	//this.itemRef.set({ name: newName });

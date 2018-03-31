@@ -87,7 +87,7 @@ import * as moment from 'moment';
  		}
 
  		//todo: upload answers & update statue to firebase - validate? - push answers one by one (answer = category[index])
- 		console.log("index == " + idx);
+ 		console.log("index == " + this.displayedSections.length);
  	}
 
  	scrollTo(elementId:string) {
