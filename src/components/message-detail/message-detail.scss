@@ -1,5 +1,9 @@
 message-detail {
 
+	ion-card {
+		margin: 0px;
+	}
+
 	ion-card-header {
 		font-size: 40px !important;
 		border-bottom: 1px solid color($colors, light);
@@ -44,7 +48,7 @@ message-detail {
 
 	.section-wrapper {
 		border-bottom: 1px solid color($colors, light);
-		margin: 20px;
+		margin: 0px;
 	}
 
 	@keyframes fadeIn {
@@ -69,12 +73,19 @@ message-detail {
 
 	.message-card {
 		padding: 0px !important;
+		margin: 0px !important;
+		width: 100%;
 		overflow: visible;
 
 		ion-card-content {
 			padding: 0px !important;
 			overflow: visible;
 		}
+	}
+
+	.message-detail-wrapper {
+		padding: 0px !important;
+		margin: 0px !important;
 	}
 
 }

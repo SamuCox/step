@@ -36,6 +36,8 @@ import { NouisliderModule } from "ng2-nouislider";
 import * as moment from 'moment';
 import { DatabaseHelperProvider } from '../providers/database-helper/database-helper';
 
+import { SwingModule } from 'angular2-swing';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDhDTAneynml0xSi2mNIXJ8yuryl-hJOz0",
@@ -70,7 +72,8 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     MainPipe,
     IonRangeSliderModule,
-    NouisliderModule
+    NouisliderModule,
+    SwingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -88,6 +88,7 @@ import { ViewController } from 'ionic-angular';
          }]
        },
        options: {
+         events: [],
          maintainAspectRatio: false,
          legend: {
            display: false,

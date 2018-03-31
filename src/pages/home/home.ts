@@ -9,7 +9,6 @@ import { Health } from '@ionic-native/health';
 import { Chart } from 'chart.js';
 import { AuthProvider } from '../../providers/auth/auth';
 
-
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html'

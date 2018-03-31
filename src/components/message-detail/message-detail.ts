@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Slides } from 'ionic-angular';
 import * as moment from 'moment';
 
 /**
@@ -21,6 +22,7 @@ import * as moment from 'moment';
 
  	//@Input() msg: AngularFireAction<DatabaseSnapshot>;
  	@ViewChild(Content) pageContent: Content;
+ 	@ViewChild(Slides) slides: Slides;
 
  	private _msg: AngularFireAction<DatabaseSnapshot>;
  	@Input() set msg(value: AngularFireAction<DatabaseSnapshot>) {
@@ -80,11 +82,7 @@ import * as moment from 'moment';
  	}
 
  	logForm(idx: number){
- 		if (idx == this.progressIndex && this.progressIndex < this.sections.length - 1) {
- 			this.progressIndex++;
- 			this.displayedSections.push(this.sections[this.progressIndex]);
- 			this.scrollTo("section" + idx);
- 		}
+ 		this.slides.slideNext(500, true);
 
  		//todo: upload answers & update statue to firebase - validate? - push answers one by one (answer = category[index])
  		console.log("index == " + this.displayedSections.length);

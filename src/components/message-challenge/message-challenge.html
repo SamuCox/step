@@ -4,17 +4,16 @@
 </div>
 
 <div *ngIf="section && (!section.hasCompleted && !section.hasGivenup)">
-	<ion-slides pager class="survey-list-wrapper">
-		<ion-slide #surveySlider class="survey-wrapper" *ngFor="let challenge of section.options; let cidx = index">
+	<div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(true)" (throwoutright)="voteUp(false)" id="card-stack">
+		<div swing-card *ngFor="let challenge of challenges; let cidx = index">
 
-			<ion-card>
+			<ion-card class="swing-card-wrapper">
 				<ion-card-header>
 					{{challenge.title}}
 				</ion-card-header>
 				<ion-card-content>
 					<p>{{challenge.content}}</p>
 					<hr>
-					<p>{{challenge.category}}</p>
 					<ion-grid>
 						<ion-row>
 							<ion-col>
@@ -27,6 +26,7 @@
 					</ion-grid>
 				</ion-card-content>
 
+				<!--
 				<div *ngIf="!section.hasPicked && answers" class="pre-survey">
 					<div *ngFor="let question of section.pre_survey; let qidx = index" >
 						<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
@@ -39,21 +39,38 @@
 						<hr>
 					</div>
 				</div>
+			-->
 
-				<button ion-button full color="engage" class="challenge-button" (click)="acceptChallenge(cidx)" *ngIf="!section.hasPicked || (section.hasPicked && cidx!=section.pickedIdx)">Accept this challenge!</button>
+			<ion-grid *ngIf="!section.hasPicked || (section.hasPicked && cidx!=section.pickedIdx)">
+				<ion-row>
+					<ion-col>
+						<button ion-button full color="engage" class="challenge-button" (click)="acceptChallenge(cidx)">I'll do it!</button>
+					</ion-col>
+					<ion-col>
+						<button ion-button full color="engage" class="challenge-button" (click)="dislikeChallenge(cidx)">Change</button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
 
-				<div class="challenge-button-group" *ngIf="section.hasPicked && cidx==section.pickedIdx">
-					<button ion-button full color="engage" class="challenge-button" (click)="completeChallenge()" >Complete this challenge!</button>
-					<button ion-button full color="engage" class="challenge-button" (click)="giveupChallenge()">Give up</button>
-				</div>
-			</ion-card>
-		</ion-slide>
-	</ion-slides>
+			<ion-grid class="challenge-button-group" *ngIf="section.hasPicked && cidx==section.pickedIdx">
+				<ion-row>
+					<ion-col width-33>
+						<button ion-button full color="engage" class="challenge-button" (click)="completeChallenge()" >Complete this challenge!</button>
+					</ion-col>
+					<ion-col width-67>
+						<button ion-button full color="engage" class="challenge-button" (click)="giveupChallenge()">Give up</button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
 
-	<div class="question-button-group">
-		<button ion-button (click)="prevChallenge()"><</button>
-		<button ion-button (click)="nextChallenge()">Next</button>
+		</ion-card>
 	</div>
+</div>
+
+<div class="question-button-group">
+	<button ion-button (click)="voteUp(true)"><</button>
+	<button ion-button (click)="voteUp(false)">Next</button>
+</div>
 </div>
 
 <div *ngIf="section && (section.hasCompleted || section.hasGivenup)">
