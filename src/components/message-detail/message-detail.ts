@@ -93,7 +93,13 @@ import * as moment from 'moment';
  	}
 
  	logForm(idx: number){
- 		this.slides.slideNext(500, true);
+ 		if (this.surveys) {
+ 			var currentSurvey = this.surveys.find(survey => survey.sectionId == idx);
+ 			if (currentSurvey) {
+ 				currentSurvey.saveAnswersToDB();
+ 			}
+ 		}
+ 		//this.slides.slideNext(500, true);
 
  		//todo: upload answers & update statue to firebase - validate? - push answers one by one (answer = category[index])
  		//console.log("index == " + this.displayedSections.length);

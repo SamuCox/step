@@ -30,9 +30,10 @@
 
 							<message-survey #messageSurvey *ngIf="section.type != 'challenge' && section.survey" [survey]="section.survey" [messageId]="messageId" [sectionId]="idx"></message-survey>
 							<!-- to clear -->
+							<!--
 							<message-survey *ngIf="section.type == 'challenge' && section.complete_survey && section.hasCompleted" [survey]="section.complete_survey"></message-survey>
 							<message-survey *ngIf="section.type == 'challenge' && section.attempted_survey && section.hasGivenup && section.hasAttempted" [survey]="section.attempted_survey"></message-survey>
-							<message-survey *ngIf="section.type == 'challenge' && section.unattempted_survey && section.hasGivenup && !section.hasAttempted" [survey]="section.unattempted_survey"></message-survey>
+							<message-survey *ngIf="section.type == 'challenge' && section.unattempted_survey && section.hasGivenup && !section.hasAttempted" [survey]="section.unattempted_survey"></message-survey> -->
 
 							<button ion-button full="true" type="submit" class="submit-button" [disabled]="!validateForm(idx)" (click)="logForm(idx)">Next Section</button>
 							<br>
