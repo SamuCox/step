@@ -4,7 +4,6 @@
 		<ion-card-header class="message-header"> 
 			<div class="message-time">{{getMonthName(time.month)}} {{time.date}}</div>
 		</ion-card-header>
-		<br>
 
 		<ion-card-content class="message-content-wrapper">
 			<ion-item-group>
@@ -29,13 +28,13 @@
 							<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
 							<message-challenge *ngIf=" section.type == 'challenge'" [section]="section" [messageId]="messageId" [sectionId]="idx"> </message-challenge>
 
-							<message-survey *ngIf="section.type != 'challenge' && section.survey" [survey]="section.survey"></message-survey>
+							<message-survey #messageSurvey *ngIf="section.type != 'challenge' && section.survey" [survey]="section.survey" [messageId]="messageId" [sectionId]="idx"></message-survey>
 							<!-- to clear -->
 							<message-survey *ngIf="section.type == 'challenge' && section.complete_survey && section.hasCompleted" [survey]="section.complete_survey"></message-survey>
 							<message-survey *ngIf="section.type == 'challenge' && section.attempted_survey && section.hasGivenup && section.hasAttempted" [survey]="section.attempted_survey"></message-survey>
 							<message-survey *ngIf="section.type == 'challenge' && section.unattempted_survey && section.hasGivenup && !section.hasAttempted" [survey]="section.unattempted_survey"></message-survey>
 
-							<button ion-button full="true" type="submit" class="submit-button" [disabled]="!valid" (click)="logForm(idx)">Next Section</button>
+							<button ion-button full="true" type="submit" class="submit-button" [disabled]="!validateForm(idx)" (click)="logForm(idx)">Next Section</button>
 							<br>
 						</div>
 					</ion-slide>

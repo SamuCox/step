@@ -17,6 +17,8 @@ import { Scroll } from 'ionic-angular';
    private _survey: any;
    @ViewChild('barCanvas') barCanvas;
    @ViewChild('surveyScroll') scroll: ElementRef;
+   @Input() public sectionId: number;
+   @Input() public messageId: string;
    @Input() set survey(value: any) {
      this._survey = value;
      console.log("msg came in!");
@@ -40,7 +42,7 @@ import { Scroll } from 'ionic-angular';
    }
 
    initializeAnswerArrays(length: number) {
-     var answers = new Array(length).fill(4);
+     var answers = new Array(length).fill("");
      this.hasAnswered = new Array(length).fill(false);
      this._survey.forEach(function (question, index) {
        if (question.type == "field") {
@@ -51,7 +53,10 @@ import { Scroll } from 'ionic-angular';
    }
 
    public isValid() {
-     return this.hasAnswered.every(answered => answered);
+     //return this.hasAnswered.every(answered => answered);
+     var valid = true;
+     this.answers.every(answer => valid = valid && (answer !== ""));
+     return valid;
    }
 
    public mcqAnswer() {

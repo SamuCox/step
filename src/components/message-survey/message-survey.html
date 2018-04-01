@@ -11,6 +11,7 @@
 	<div class="question-icon">
 		<ion-icon name="help"></ion-icon>
 	</div> -->
+	
 	<div class="survey-header">
 	</div>
 
@@ -21,7 +22,7 @@
 				<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 
 				<ion-item *ngIf=" question.type == 'field'">
-					<ion-input [(ngModel)]="answers[qidx]" type="text"></ion-input>
+					<ion-input [(ngModel)]="answers[qidx]" type="text" placeholder="I think..."></ion-input>
 				</ion-item>
 
 				<ion-grid *ngIf="question.type == 'likert'" class="survey-answer">

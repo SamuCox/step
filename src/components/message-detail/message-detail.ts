@@ -1,9 +1,10 @@
-import { Component, Input, NgModule,ViewChild} from '@angular/core';
+import { Component, Input, NgModule,ViewChild, ViewChildren, QueryList} from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Slides } from 'ionic-angular';
+import {MessageSurveyComponent} from '../message-survey/message-survey'
 import * as moment from 'moment';
 
 /**
@@ -23,6 +24,7 @@ import * as moment from 'moment';
  	//@Input() msg: AngularFireAction<DatabaseSnapshot>;
  	@ViewChild(Content) pageContent: Content;
  	@ViewChild(Slides) slides: Slides;
+ 	@ViewChildren('messageSurvey') surveys: QueryList<MessageSurveyComponent>;
 
  	private _msg: AngularFireAction<DatabaseSnapshot>;
  	@Input() set msg(value: AngularFireAction<DatabaseSnapshot>) {
@@ -67,7 +69,6 @@ import * as moment from 'moment';
  	private todo : FormGroup;
  	valid = true;
 
- 	survey = [];
  	messageId: string;
  	sectionTitle = ["Your challenge reflection", "How you walked", "Get ready for a new day!"];
 
@@ -95,12 +96,26 @@ import * as moment from 'moment';
  		this.slides.slideNext(500, true);
 
  		//todo: upload answers & update statue to firebase - validate? - push answers one by one (answer = category[index])
- 		console.log("index == " + this.displayedSections.length);
+ 		//console.log("index == " + this.displayedSections.length);
  	}
 
  	scrollTo(elementId:string) {
  		//let yOffset = document.getElementById(elementId).offsetTop + document.getElementById(elementId).offsetHeight;
  		//this.pageContent.scrollTo(0, yOffset, 4000);
+ 	}
+
+ 	validateForm(idx: number) {
+ 		if (this.surveys) {
+ 			var currentSurvey = this.surveys.find(survey => survey.sectionId == idx);
+ 			console.log("survey length " + this.surveys.first.sectionId + " and id is " + idx);
+ 			if (currentSurvey) {
+ 				return currentSurvey.isValid();
+ 			} else {
+ 				return false;
+ 			}
+ 		} else {
+ 			return false;
+ 		}
  	}
 
  }
