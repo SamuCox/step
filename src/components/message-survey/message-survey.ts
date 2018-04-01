@@ -22,9 +22,14 @@ import { Scroll } from 'ionic-angular';
    @Input() public messageId: string;
    @Input() set survey(value: any[]) {
      this._survey = value;
-     console.log("msg came in!");
+     console.log("msg came in! " + value);
      console.log("msg wut" + value.length);
-     this.initializeAnswerArrays(value.length);
+     var output = '';
+     for (var property in value) {
+       output += property + ': ' + value[property]+'; ';
+     }
+     console.log(output);
+     this.initializeAnswerArrays(value, value.length);
 
  		// initialize answer based on question type
  	}
@@ -42,11 +47,10 @@ import { Scroll } from 'ionic-angular';
    constructor(public dbHelperProvider: DatabaseHelperProvider) {
    }
 
-   initializeAnswerArrays(length: number) {
+   initializeAnswerArrays(survey: any[], length: number) {
      var answers = new Array(length).fill("");
      var hasAnswered = new Array(length).fill(false);
-     var survey = this.survey;
-     this.survey.forEach(function (question, index) {
+     Array.from(survey).forEach(function (question, index) {
        answers[index] = survey[index].answer;
        hasAnswered[index] = survey[index].hasAnswered;
      });
@@ -56,15 +60,21 @@ import { Scroll } from 'ionic-angular';
 
    public isValid() {
      //return this.hasAnswered.every(answered => answered);
-     var valid = true;
-     this.answers.every(answer => valid = valid && (answer !== ""));
-     return valid;
+     if (this.answers) {
+       var valid = true;
+       this.answers.every(answer => valid = valid && (answer !== ""));
+       return valid;
+     } else {
+       return false;
+     }
    }
 
    public saveAnswersToDB() {
+     var sectionPath = `${this.messageId}/sections/${this.sectionId}/`;
      var path = `${this.messageId}/sections/${this.sectionId}/survey/`;
      var dbHelper = this.dbHelperProvider;
      var answers = this.answers;
+     dbHelper.updateMessage(sectionPath, {hasFinishedSurvey: true});
      this.answers.forEach(function(answer, index) {
        var answerPath = path + index;
        dbHelper.updateMessage(answerPath, {answer: answers[index], isAnswered: true});

@@ -1,4 +1,4 @@
-import { Component, Input, NgModule,ViewChild, ViewChildren, QueryList} from '@angular/core';
+import { Component, Input, NgModule,ViewChild, ViewChildren, QueryList, ChangeDetectorRef} from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
@@ -82,7 +82,7 @@ import * as moment from 'moment';
  	progressIndex = 0;
  	time : any;
 
- 	constructor() {
+ 	constructor(private cdRef: ChangeDetectorRef) {
  	}
 
  	getMonthName(index: number) {
@@ -90,6 +90,7 @@ import * as moment from 'moment';
  	}
 
  	ngOnChanges(changes: any) {
+ 		this.cdRef.detectChanges();
  	}
 
  	logForm(idx: number){
@@ -99,7 +100,7 @@ import * as moment from 'moment';
  				currentSurvey.saveAnswersToDB();
  			}
  		}
- 		//this.slides.slideNext(500, true);
+ 		this.slides.slideNext(500, true);
 
  		//todo: upload answers & update statue to firebase - validate? - push answers one by one (answer = category[index])
  		//console.log("index == " + this.displayedSections.length);
@@ -120,7 +121,7 @@ import * as moment from 'moment';
  				return false;
  			}
  		} else {
- 			return false;
+ 			return null;
  		}
  	}
 
