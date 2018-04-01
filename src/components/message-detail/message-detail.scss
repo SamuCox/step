@@ -96,6 +96,8 @@ message-detail {
 		margin-top: 5px;
 		padding: 0px !important;
 		text-align: center;
+		background: white !important;
+		z-index: 100;
 
 		ion-col {
 			padding: 0px 5px 0px 5px !important;
@@ -120,6 +122,10 @@ message-detail {
 		.progress-step-bar {
 			background: green;
 		}
+	}
+
+	.message-content-wrapper {
+		position: relative;
 	}
 
 }

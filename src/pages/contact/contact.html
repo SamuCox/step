@@ -1,5 +1,5 @@
 <ion-content id="message-list">
-  <button (click)="addMsg()">Add Msg</button>
+  <!-- <button (click)="addMsg()">Add Msg</button> -->
   <div *ngFor="let message of messages | async | reverse" class="message-item">
     <div *ngIf="message" class="message-inner-wrapper">
       <message-detail [msg]="message"></message-detail>
