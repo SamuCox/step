@@ -44,6 +44,11 @@ message-detail {
 		background-color: #999;
 		width: 30px;
 	}
+
+	.section-description {
+		text-align: left;
+		font-size: 16px;
+	}
 	
 	.submit-button {
 		margin-top: 50px;
@@ -52,6 +57,8 @@ message-detail {
 	.section-wrapper {
 		border-bottom: 1px solid color($colors, light);
 		margin: 0px;
+		margin-bottom: 0px !important;
+		margin-top: 0px !important;
 	}
 
 	@keyframes fadeIn {
@@ -95,7 +102,7 @@ message-detail {
 		font-size: 10px;
 		padding: 0px !important;
 		text-align: center;
-		background: white !important;
+		background: #F7F7F7 !important;
 		z-index: 100;
 
 		ion-col {
@@ -106,14 +113,7 @@ message-detail {
 	.progress-step-bar {
 		height: 6px;
 		width: 100%;
-		background: color($colors, light);
-	}
-
-	.current-section-bar {
-		color: blue;
-		.progress-step-bar {
-			background: blue;
-		}
+		background: #D1D1D1;
 	}
 
 	.complete-section-bar {
@@ -123,8 +123,24 @@ message-detail {
 		}
 	}
 
+	.current-section-bar {
+		color: #4990E2;
+		.progress-step-bar {
+			background: #4990E2;
+		}
+	}
+
 	.message-content-wrapper {
 		position: relative;
+	}
+
+	.message-date {
+		font-size: 20px;
+		margin-left: 5px;
+	}
+
+	.message-header {
+		background: #F7F7F7;
 	}
 
 }

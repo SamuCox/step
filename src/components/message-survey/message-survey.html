@@ -17,12 +17,12 @@
 
 	<div class="survey-list-wrapper" *ngIf="survey">
 		<div class="question-wrapper fadeIn" *ngFor="let question of survey; let qidx = index">
-			<div *ngIf="qidx == currentQID">
+			<div *ngIf="qidx == currentQID" class="fadeIn">
 
 				<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
 
 				<ion-item *ngIf=" question.type == 'field'">
-					<ion-input [(ngModel)]="answers[qidx]" type="text" placeholder="I think..."></ion-input>
+					<ion-input [(ngModel)]="answers[qidx]" type="text" placeholder="I think..." (keyup.enter)="nextQuestion()"></ion-input>
 				</ion-item>
 
 				<ion-grid *ngIf="question.type == 'likert'" class="survey-answer">
@@ -31,7 +31,7 @@
 					</ion-row>
 					<ion-row radio-group [(ngModel)]="answers[qidx]" class="scale-radio-row">
 						<ion-col *ngFor="let scale of likertScales" class="scale-radio-col">
-							<ion-radio value="{{scale}}"></ion-radio>
+							<ion-radio value="{{scale}}" (ionSelect)="nextQuestion()"></ion-radio>
 						</ion-col>
 					</ion-row>
 				</ion-grid> 
@@ -39,7 +39,7 @@
 				<ion-list radio-group [(ngModel)]="answers[qidx]" *ngIf="question.type == 'mcq'" (ionChange)="mcqAnswer()">
 					<ion-item *ngFor="let option of question.options">
 						<ion-label>{{option}}</ion-label>
-						<ion-radio value="{{option}}"></ion-radio>
+						<ion-radio value="{{option}}" (ionSelect)="nextQuestion()"></ion-radio>
 					</ion-item>
 				</ion-list>
 			</div>

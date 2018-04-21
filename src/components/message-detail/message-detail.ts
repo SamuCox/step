@@ -70,7 +70,7 @@ import * as moment from 'moment';
  	valid = true;
 
  	messageId: string;
- 	sectionTitle = ["Your challenge reflection", "How you walked", "Get ready for a new day!"];
+ 	sectionTitle = ["Reflection", "Challenges"];
 
  	//todo from server
  	currentQIDs = [0, 0, 0, 0, 0];
@@ -87,6 +87,10 @@ import * as moment from 'moment';
 
  	getMonthName(index: number) {
  		return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][index-1];
+ 	}
+
+ 	getDayName(index: number) {
+ 		return ['Sunday', 'Monday', 'Tuedsday', "wednesday", "Thursday", "Friday"][index];
  	}
 
  	ngOnChanges(changes: any) {
@@ -114,7 +118,7 @@ import * as moment from 'moment';
  	validateForm(idx: number) {
  		if (this.surveys) {
  			var currentSurvey = this.surveys.find(survey => survey.sectionId == idx);
- 			console.log("survey length " + this.surveys.first.sectionId + " and id is " + idx);
+ 			//console.log("survey length " + this.surveys.first.sectionId + " and id is " + idx);
  			if (currentSurvey) {
  				return currentSurvey.isValid();
  			} else {

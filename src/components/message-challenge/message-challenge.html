@@ -1,78 +1,50 @@
 <!-- Generated template for the MessageChallengeComponent component -->
-<div class="section-title">
-	Daily Challenge
-</div>
+<div class="background-wrapper">
+	<br>
+	<div class="section-title">
+		Daily Challenge
+	</div>
 
-<div *ngIf="section && (!section.hasCompleted && !section.hasGivenup)">
-	<div swing-stack #myswing1 [stackConfig]="stackConfig" (throwoutleft)="voteUp(true)" (throwoutright)="voteUp(false)" id="card-stack">
-		<div swing-card *ngFor="let challenge of challenges; let cidx = index">
+	<div class="section-description">
+		<p>Get ready for the challenges prepared for you!</p>
+	</div>
 
-			<ion-card class="swing-card-wrapper">
-				<ion-card-header>
+	<div class="challenge-list-wrapper" *ngIf="section">
+		<div *ngFor="let challenge of challenges; let cidx = index">
+			<ion-card class="challenge-card">
+				<ion-card-header text-wrap>
 					{{challenge.title}}
 				</ion-card-header>
 				<ion-card-content>
-					<p>{{challenge.content}}</p>
-					<hr>
-					<ion-grid>
-						<ion-row>
-							<ion-col>
-								Difficulty: {{challenge.difficulty}}
-							</ion-col>
-							<ion-col>
-								Fun: {{challenge.fun}}
-							</ion-col>
-						</ion-row>
-					</ion-grid>
-				</ion-card-content>
-
+					<div class="icons"><ion-icon name="time"></ion-icon>{{challenge.duration}}</div>
 				<!--
-				<div *ngIf="!section.hasPicked && answers" class="pre-survey">
-					<div *ngFor="let question of section.pre_survey; let qidx = index" >
-						<ion-label text-wrap class="survey-question">{{question.question}}</ion-label>
-						<ion-item *ngIf="question.type == 'likert'" class="survey-answer">	
-							<ion-range min="1" max="7" color="mid" pin="true" snaps="true" [(ngModel)]="answers[cidx][qidx]">
-								<ion-label range-left>1</ion-label>
-								<ion-label range-right>7</ion-label>
-							</ion-range>
-						</ion-item>
-						<hr>
-					</div>
-				</div>
-			-->
+				<ion-grid>
+					<ion-row>
+						<ion-col>
+							Difficulty: {{challenge.difficulty}}
+						</ion-col>
+						<ion-col>
+							Fun: {{challenge.fun}}
+						</ion-col>
+					</ion-row>
+				</ion-grid> -->
+				<ion-grid *ngIf="!challenge.hasCompleted && !challenge.hasGivenup">
+					<ion-row>
+						<ion-col>
+							<button ion-button full color="dark" class="giveup-button" (click)="giveupChallenge(cidx)">I don't have time</button>
+						</ion-col>
+						<ion-col col-8>
+							<button ion-button full class="challenge-button" (click)="completeChallenge(cidx)">I just finished it!</button>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
 
-			<ion-grid *ngIf="!section.hasPicked || (section.hasPicked && cidx!=section.pickedIdx)">
-				<ion-row>
-					<ion-col>
-						<button ion-button full color="engage" class="challenge-button" (click)="acceptChallenge(cidx)">I'll do it!</button>
-					</ion-col>
-					<ion-col>
-						<button ion-button full color="engage" class="challenge-button" (click)="dislikeChallenge(cidx)">Change</button>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-
-			<ion-grid class="challenge-button-group" *ngIf="section.hasPicked && cidx==section.pickedIdx">
-				<ion-row>
-					<ion-col width-33>
-						<button ion-button full color="engage" class="challenge-button" (click)="completeChallenge()" >Complete this challenge!</button>
-					</ion-col>
-					<ion-col width-67>
-						<button ion-button full color="engage" class="challenge-button" (click)="giveupChallenge()">Give up</button>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-
+			</ion-card-content>
 		</ion-card>
 	</div>
 </div>
-
-<div class="question-button-group">
-	<button ion-button (click)="voteUp(true)"><</button>
-	<button ion-button (click)="voteUp(false)">Next</button>
 </div>
-</div>
-
+<!--
 <div *ngIf="section && (section.hasCompleted || section.hasGivenup)">
 	<div *ngFor="let challenge of section.options; let cidx = index">
 		<ion-card *ngIf="cidx == section.pickedIdx">
@@ -81,7 +53,7 @@
 				<p>{{challenge.category}}</p>
 			</ion-card-header>
 			<ion-card-content>
-				<!-- <p>{{challenge.content}}</p> -->
+				<p>{{challenge.content}}</p> 
 				<hr>
 				<ion-grid>
 					<ion-row>
@@ -106,4 +78,4 @@
 			</ion-card-content>
 		</ion-card>
 	</div>
-</div>
+</div> -->

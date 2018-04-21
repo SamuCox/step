@@ -1,5 +1,43 @@
 message-streak-comparison {
 	canvas {
-		height: 180px;
+		height: 200px;
+	}
+
+	ion-segment {
+		margin-top: 0px;
+		//margin-bottom: 20px;
+		background: #EEF7FA;
+	}
+
+	.section-description {
+		padding: 30px;
+		//background: #EEF7FA;
+		margin-bottom: 0px;
+	}
+
+	.self-label {
+		//color: blue;
+		font-weight: bold;
+	}
+
+	.compare-label {
+		//color: cyan;
+		font-weight: bold;
+	}
+
+	ion-card-content {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 12px 20px 0 rgba(0, 0, 0, 0.1);
+		padding-bottom: 20px;
+		z-index: 10000;
+		background: #EEF7FA;
+	}
+
+	.sticky-graph {
+		position: sticky;
+		top: 0px;
+	}
+
+	.comparison-page {
+		position: relative;
 	}
 }

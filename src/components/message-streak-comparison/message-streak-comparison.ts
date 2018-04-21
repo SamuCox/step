@@ -20,6 +20,7 @@ import { ViewController } from 'ionic-angular';
 
    @Input() set section(value: any) {
      this._section = value;
+     console.log("comparisonMode = " + this.comparisonMode);
      this.initializeGraph();
    }
 
@@ -30,6 +31,13 @@ import { ViewController } from 'ionic-angular';
    @ViewChild('barCanvas') barCanvas;
 
    barChart: any;
+
+   //@ViewChild('cohortCanvas') cohortCanvas;
+
+   //cohortChart: any;
+
+   comparisonMode = 'calendar';
+   hasCohortInitialized = false;
 
    constructor(private viewController: ViewController) {
    }
@@ -64,69 +72,100 @@ import { ViewController } from 'ionic-angular';
        emptyLabels.push("");
      }
 
+     this.loadGraph();
+     //this.initializeCalendar();
+     //this.initializeCohort();
+   }
+
+   loadGraph() {
      const maxStepCount = Math.max(...this.section.steps);
      var maxYAxis = maxStepCount > 10000 ? Math.ceil(maxStepCount/1000)*1000 : 10000;
      const colorArray = this.initializeBarColors();
 
-     this.barChart = new Chart(this.barCanvas.nativeElement, {
+     if (this.barCanvas) {
+       this.barChart = new Chart(this.barCanvas.nativeElement, {
 
-       type: 'bar',
-       data: {
-         labels: this.section.dates,
-         datasets: [{
-           label: 'Step Count',
-           data: this.section.steps,
-           backgroundColor: colorArray,
-           borderColor: [
-           'rgba(255,99,132,1)'
-           ],
-           borderWidth: 0
-         }, {
-           label: 'Line Comparison',
-           data: this.section.steps,
-           type: 'line'
-         }]
-       },
-       options: {
-         events: [],
-         maintainAspectRatio: false,
-         legend: {
-           display: false,
-           labels: {
-             fontColor: 'rgb(255, 99, 132)'
-           }
-         },
-         layout :{
-           padding: {
-             left: 0,
-             right: 0,
-             top: 0,
-             bottom: 0
-           }
-         },
-         scales: {
-           xAxes: [{
-             gridLines: {
-               display: false,
-               drawBorder: false,
-             }
-           }],
-           yAxes: [{
-             ticks: {
-               beginAtZero:true,
-               max : maxYAxis,
-               stepSize : 5000,
-               callback: function(label, index, labels) {
-                 return (label == 0)? 0 : label/1000+'k';
-               }
-             },
-             gridLines: {
-               display: false,
-               drawBorder: false,
-             }
+         type: 'bar',
+         data: {
+           labels: this.section.dates,
+           datasets: [{
+             label: 'Step Count',
+             data: this.section.steps,
+             backgroundColor: colorArray,
+             borderColor: [
+             'rgba(255,99,132,1)'
+             ],
+             borderWidth: 0
+           }, {
+             label: 'Line Comparison',
+             data: this.section.calendarSteps,
+             type: 'line'
            }]
-         }
-       }    
+         },
+         options: {
+           events: [],
+           maintainAspectRatio: false,
+           legend: {
+             display: false,
+             labels: {
+               fontColor: 'rgb(255, 99, 132)'
+             }
+           },
+           layout :{
+             padding: {
+               left: 0,
+               right: 0,
+               top: 0,
+               bottom: 0
+             }
+           },
+           scales: {
+             xAxes: [{
+               gridLines: {
+                 display: false,
+                 //drawBorder: false,
+               }
+             }],
+             yAxes: [{
+               ticks: {
+                 beginAtZero:true,
+                 max : maxYAxis,
+                 stepSize : 5000,
+                 callback: function(label, index, labels) {
+                   return (label == 0)? 0 : label/1000+'k';
+                 }
+               },
+               gridLines: {
+                 display: false,
+                 //drawBorder: false,
+               }
+             }]
+           }
+         }    
+       });
+     }
+   }
+
+   initializeCohort() {
+   }
+
+   selectCalendar() {
+     this.barChart.data.datasets.pop();
+     this.barChart.data.datasets.push({
+       label: 'Line Comparison',
+       data: this.section.calendarSteps,
+       type: 'line'
      });
+     this.barChart.update();
+   }
+
+   selectCohort() {
+     this.barChart.data.datasets.pop();
+     this.barChart.data.datasets.push({
+       label: 'Line Comparison',
+       data: this.section.cohortSteps,
+       type: 'line'
+     });
+     this.barChart.update();
    }
  }

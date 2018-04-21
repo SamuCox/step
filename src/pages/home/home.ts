@@ -85,6 +85,7 @@ export class HomePage {
 		var yy = today.getFullYear();
 		var mm = today.getMonth() + 1;
 		var dd = today.getDate();
+		var day = today.getDay();
 		/*
 		this.msgsRef = this.afDatabase.list(`/profile/${this.authProvider.currentUID()}/steps`);
 		const newMsgRef = this.msgsRef.push({});
@@ -95,16 +96,34 @@ export class HomePage {
 		})
 		*/
 
-		var msgsRef = this.afDatabase.list(`/profile/${this.authProvider.currentUID()}/steps`);
-		msgsRef.remove();
+		//var msgsRef = this.afDatabase.list(`/profile/${this.authProvider.currentUID()}/steps`);
 
+		//msgsRef.remove();
+		var database = this.afDatabase;
+		var auth = this.authProvider
 		this.stepArray.forEach(function(value) {
+			var year = value.startDate.getYear() + 1900;
+			var month = value.startDate.getMonth() + 1;
+			var date = value.startDate.getDate();
+			var timestamp = `${year}-${month}-${date}`;
+			var stepRef = database.object(`/steps/${auth.currentUID()}/${timestamp}`);
+			stepRef.set({
+				year: value.startDate.getYear() + 1900,
+				month: value.startDate.getMonth() + 1,
+				date: value.startDate.getDate(),
+				step: value.value,
+				day: value.startDate.getDay()
+			});
+
+			/*
 			msgsRef.push({
 				year: value.startDate.getYear() + 1900,
 				month: value.startDate.getMonth() + 1,
 				date: value.startDate.getDate(),
-				step: value.value
+				step: value.value,
+				day: value.startDate.getDay()
 			});
+			*/
 		});
 
 	}

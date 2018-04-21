@@ -25,7 +25,7 @@ import { StackConfig, Stack, Card, ThrowEvent, DragEvent, SwingStackComponent, S
    private _section: any;
    @Input() set section(value: any) {
      this._section = value;
-     this.initializeAnswerArrays(value.pre_survey.length, value.options.length);
+     //this.initializeAnswerArrays(value.pre_survey.length, value.options.length);
      this.challenges = this.section.options;
 
 		// initialize answer based on question type
@@ -95,40 +95,16 @@ initializeAnswerArrays(qlength: number, olength: number) {
  		}) */
  	}
 
- 	nextChallenge() {
-     this.slides.slideNext(500, true);
-   }
-
-   prevChallenge() {
-     this.slides.slidePrev(500, true);
-   }
-
-   acceptChallenge(cidx: number) {
-     console.log("accept! SID: " + this.sectionId);
-     console.log("accept! MID: " + this.messageId);
-
-  	//this.section.hasPicked = true;
-  	//this.section.pickedIdx = cidx;
-  	var path = `${this.messageId}/sections/${this.sectionId}`;
-  	this.dbHelperProvider.updateMessage(path, {hasPicked: true});
-    //this.voteUp(true);
-    console.log("accept challenge");
-  }
-
-  dislikeChallenge(cidex: number) {
-    this.voteUp(false);
-  }
-
-  completeChallenge() {
+  completeChallenge(index: number) {
     this.section.hasCompleted = true;
-    var path = `${this.messageId}/sections/${this.sectionId}`;
+    var path = `${this.messageId}/sections/${this.sectionId}/options/${index}`;
     this.dbHelperProvider.updateMessage(path, {hasCompleted: true});
     console.log("complete challenge");
   }
 
-  giveupChallenge() {
+  giveupChallenge(index: number) {
     this.section.hasGivenup = true;
-    var path = `${this.messageId}/sections/${this.sectionId}`;
+    var path = `${this.messageId}/sections/${this.sectionId}/options/${index}`;
     this.dbHelperProvider.updateMessage(path, {hasGivenup: true});
     console.log("give up challenge");
   }

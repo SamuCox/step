@@ -161,4 +161,22 @@ message-survey {
 		padding-top: 0px;
 		margin-top: 0px;
 	}
+
+	.question-text-wrapper {
+
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	.fadeIn {
+		animation-name: fadeIn;
+		animation-duration: 2s;
+	}
 }

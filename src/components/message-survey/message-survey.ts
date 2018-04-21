@@ -93,7 +93,7 @@ import { Scroll } from 'ionic-angular';
 
    nextQuestion() {
      if (this.currentQID < this.survey.length - 1) {
-       this.currentQID++;
+       setTimeout(() => this.currentQID++, 500);
        //this.scrollToQuestion(this.currentQID);
      }
      console.log("current qid: " + this.currentQID);

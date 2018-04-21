@@ -1,12 +1,9 @@
 <!-- Generated template for the MessageDetailComponent component -->
+<div class="message-time">Friday{{getDayName(time.day)}} <span class="message-date">{{getMonthName(time.month)}} {{time.date}}</span></div>
 <div *ngIf="time && sections" class="message-detail-wrapper">
 	<ion-card class="message-card fadeIn">
-		<ion-card-header class="message-header"> 
-			<div class="message-time">{{getMonthName(time.month)}} {{time.date}}</div>
-		</ion-card-header>
-
 		<ion-card-content class="message-content-wrapper">
-			<ion-item-group>
+			<!--
 				<ion-item-divider sticky class="section-progress-bar">
 					<ion-grid>
 						<ion-row>
@@ -16,12 +13,11 @@
 							</ion-col>
 						</ion-row>
 					</ion-grid>
-				</ion-item-divider>
+				</ion-item-divider> -->
 
 				<ion-slides>
 					<ion-slide *ngFor="let section of sections; let idx = index" id="section{{idx}}">
 						<div class="section-wrapper">
-							<br>
 
 							<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
 							<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
@@ -38,11 +34,9 @@
 							<message-survey *ngIf="section.type == 'challenge' && section.unattempted_survey && section.hasGivenup && !section.hasAttempted" [survey]="section.unattempted_survey"></message-survey> -->
 
 							<button ion-button full="true" type="submit" class="submit-button" [disabled]="!validateForm(idx)" (click)="logForm(idx)">Next Section</button>
-							<br>
 						</div>
 					</ion-slide>
 				</ion-slides>
-			</ion-item-group>
 		</ion-card-content>
 	</ion-card>
 </div>

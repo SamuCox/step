@@ -1,13 +1,34 @@
-<!-- Generated template for the MessageStreakComparisonComponent component -->
-<div class="section-title">
-	How others walked
-</div>
-<br>
+<div class="comparison-page">
+	<p>You have been walking continuously for 9 days.</p>
 
-<ion-card-content>
-	<canvas #barCanvas></canvas>
-</ion-card-content>
+	<ion-item-group>
+		<ion-item-divider sticky>
+			blablalba
+		</ion-item-divider>
+			<ion-card>
+				<canvas #barCanvas></canvas>
+			</ion-card>
+		<ion-segment [(ngModel)]="comparisonMode" color="primary">
+			<ion-segment-button value="calendar" (ionSelect)="selectCalendar()">
+				Calendar Days
+			</ion-segment-button>
+			<ion-segment-button value="cohort" (ionSelect)="selectCohort()">
+				Cohort Days
+			</ion-segment-button>
+		</ion-segment>
 
-<div class="section-description">
-	{{section?.streakDescription}}
+		<br> <br>
+
+		<div class="section-title">
+			How you've walked
+		</div>
+
+		<div class="section-description">
+			<!--{{section?.streakDescription}}-->
+			<!-- <p text-center><ion-icon name="walk"></ion-icon></p> -->
+			<p> We identified your recent walking behavior is <span class="self-label">{{section.streakName}}</span>, which means that {{section.streakDescription}}</p>
+			<br>
+			<p> The above graph shows how you compare to similar users who walked <span class="compare-label">{{section.recommendStreakName}}</span>. You are close to them, but may wish to improve <span class="self-label"> consistency</span>.</p>
+		</div>
+	</ion-item-group>
 </div>

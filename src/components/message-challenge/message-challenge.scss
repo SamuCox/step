@@ -1,4 +1,19 @@
 message-challenge {
+
+	.background-wrapper {
+		background: #EEF7FA;
+	}
+
+	.icons {
+		margin-top: 5px;
+	}
+
+	.challenge-card {
+		background: rgba(255, 255, 255, 0.7) !important;
+		margin-bottom: 30px;
+		border-left: 6px solid #98BBC4;
+	}
+
 	button {
 		text-transform: none !important;
 	}
@@ -8,7 +23,9 @@ message-challenge {
 	}
 
 	ion-card ion-card-header {
-		font-size: 20px !important;
+		font-size: 16px !important;
+		font-weight: bold !important;
+		color: color($colors, dark) !important;
 	}
 
 	.pre-survey {
@@ -84,7 +101,17 @@ message-challenge {
 		margin-top: 0px;
 		margin-bottom: 0px;
 		color: white;
-		height: 50px;
+		height: 40px;
+		background: #4990E2 !important;
+	}
+
+	.giveup-button {
+		margin-top: 0px;
+		margin-bottom: 0px;
+		height: 40px;
+		font-size: 10px !important;
+		color: color($colors, dark);
+		background: white !important;
 	}
 
 	.swiper-button-next {
@@ -111,4 +138,14 @@ message-challenge {
     top: 0%;
     //height: 90%;
   }
+
+  .challenge-list-wrapper {
+  	margin-top: 30px;
+  }
+
+  .section-description {
+		padding: 10px 30px 0px 30px;
+		//background: #EEF7FA;
+		margin-bottom: 0px;
+	}
 }
