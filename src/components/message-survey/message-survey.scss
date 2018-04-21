@@ -1,5 +1,13 @@
 message-survey {
 
+	ion-slides {
+		padding-left: 10px !important;
+	}
+
+	ion-slide {
+		//width: 80%!important;
+	}
+
 	.question-icon:after {
 		display: inline-block;
 		margin: 0 0 5px 5px;
@@ -23,6 +31,11 @@ message-survey {
 	.survey-outside-wrapper {
 		margin-top: 20px;
 		margin-bottom: 0px;
+	}
+
+	.survey-inner-wrapper {
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 
 	.attach-icon {
@@ -82,7 +95,7 @@ message-survey {
 
 	.survey-list-wrapper {
 		//background: black;
-		margin: 0px 0px 0px 0px;
+		//margin: 0px 0px 0px 0px;
 		padding: 20px 20px 0px 20px;
 		background: color($colors, light);
 		color: color($colors, dark);

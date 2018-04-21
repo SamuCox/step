@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 import { DatabaseHelperProvider } from '../../providers/database-helper/database-helper';
-import { Scroll } from 'ionic-angular';
+import { Scroll, Slides } from 'ionic-angular';
 
 /**
  * Generated class for the MessageSurveyComponent component.
@@ -17,7 +17,8 @@ import { Scroll } from 'ionic-angular';
 
    private _survey: any[];
    @ViewChild('barCanvas') barCanvas;
-   @ViewChild('surveyScroll') scroll: ElementRef;
+   @ViewChild('surveySlider') slides: Slides;
+   //@ViewChild('surveyScroll') scroll: ElementRef;
    @Input() public sectionId: number;
    @Input() public messageId: string;
    @Input() set survey(value: any[]) {
@@ -86,14 +87,11 @@ import { Scroll } from 'ionic-angular';
      console.log("emm");
    }
 
-   scrollSurvey() {
-     this.currentQID = Math.floor(this.scroll.nativeElement.scrollTop / 210);
-     //this.scroll.nativeElement.scrollTop = 200 * this.currentQID;
-   }
-
    nextQuestion() {
+
      if (this.currentQID < this.survey.length - 1) {
        setTimeout(() => this.currentQID++, 500);
+       this.slides.slideNext();
        //this.scrollToQuestion(this.currentQID);
      }
      console.log("current qid: " + this.currentQID);
@@ -101,16 +99,10 @@ import { Scroll } from 'ionic-angular';
 
    prevQuestion() {
      if (this.currentQID > 0) {
-       this.currentQID--;
+       this.slides.slidePrev();
+       //this.currentQID--;
        //this.scrollToQuestion(this.currentQID);
      }
      console.log("current qid: " + this.currentQID);
-   }
-
-   scrollToQuestion(index: number) {
-     console.log("scrolling!!!!");
-     try {
-       this.scroll.nativeElement.scrollTop = 210 * index;
-     } catch(err) { console.log("scroll err " + err)} 
    }
  }
