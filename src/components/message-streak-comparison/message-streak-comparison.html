@@ -3,30 +3,32 @@
 
 	<ion-item-group>
 		<ion-item-divider sticky>
-			blablalba
-		</ion-item-divider>
 			<ion-card>
-				<canvas #barCanvas></canvas>
+				<div>
+					<canvas #barCanvas></canvas>
+				</div>
+				<ion-segment [(ngModel)]="comparisonMode" color="primary">
+					<ion-segment-button value="calendar" (ionSelect)="selectCalendar()">
+						Calendar Days
+					</ion-segment-button>
+					<ion-segment-button value="cohort" (ionSelect)="selectCohort()">
+						Cohort Days
+					</ion-segment-button>
+				</ion-segment>
 			</ion-card>
-		<ion-segment [(ngModel)]="comparisonMode" color="primary">
-			<ion-segment-button value="calendar" (ionSelect)="selectCalendar()">
-				Calendar Days
-			</ion-segment-button>
-			<ion-segment-button value="cohort" (ionSelect)="selectCohort()">
-				Cohort Days
-			</ion-segment-button>
-		</ion-segment>
+		</ion-item-divider>
 
 		<br> <br>
 
-		<div class="section-title">
-			How you've walked
-		</div>
-
 		<div class="section-description">
+			<div class="streak-identification">
+				<p> We identified your recent walking behavior is <span class="self-label">{{section.streakName}}</span>, which means that {{section.streakDescription}}</p>
+			</div>
+
+			
 			<!--{{section?.streakDescription}}-->
 			<!-- <p text-center><ion-icon name="walk"></ion-icon></p> -->
-			<p> We identified your recent walking behavior is <span class="self-label">{{section.streakName}}</span>, which means that {{section.streakDescription}}</p>
+			
 			<br>
 			<p> The above graph shows how you compare to similar users who walked <span class="compare-label">{{section.recommendStreakName}}</span>. You are close to them, but may wish to improve <span class="self-label"> consistency</span>.</p>
 		</div>
