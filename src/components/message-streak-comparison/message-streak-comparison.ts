@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild} from '@angular/core';
 import { Chart } from 'chart.js';
 import { ViewController } from 'ionic-angular';
 
@@ -38,6 +38,7 @@ import { ViewController } from 'ionic-angular';
 
    comparisonMode = 'calendar';
    hasCohortInitialized = false;
+   hasShownComparison = false;
 
    constructor(private viewController: ViewController) {
    }
@@ -96,10 +97,6 @@ import { ViewController } from 'ionic-angular';
              'rgba(255,99,132,1)'
              ],
              borderWidth: 0
-           }, {
-             label: 'Line Comparison',
-             data: this.section.calendarSteps,
-             type: 'line'
            }]
          },
          options: {
@@ -115,7 +112,7 @@ import { ViewController } from 'ionic-angular';
              padding: {
                left: 0,
                right: 0,
-               top: 0,
+               top: 20,
                bottom: 0
              }
            },
@@ -167,5 +164,23 @@ import { ViewController } from 'ionic-angular';
        type: 'line'
      });
      this.barChart.update();
+   }
+
+   showComparison(event) {
+     if (event.value && !this.hasShownComparison) {
+       console.log("yeee!");
+       this.hasShownComparison = true;
+       console.log(this.hasShownComparison);
+       this.barChart.data.datasets.push({
+       label: 'Line Comparison',
+       data: this.section.cohortSteps,
+       type: 'line'
+     });
+       this.barChart.update();
+       console.log("hmmm");
+     } else {
+       console.log("nooo!");
+     }
+     
    }
  }

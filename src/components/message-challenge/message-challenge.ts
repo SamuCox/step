@@ -38,6 +38,8 @@ import { StackConfig, Stack, Card, ThrowEvent, DragEvent, SwingStackComponent, S
 
   public answers: (string|number)[][] = null;
   public challenges: any[];
+  public challengeCheckers: boolean[] = [false, false, false];
+  public challengeExpand: boolean[] = [false, false, false];
 
   stackConfig: StackConfig;
 
@@ -75,6 +77,10 @@ voteUp(like: boolean) {
   } else {
     this.recentCard = 'You disliked: ' + removedCard.email;
   }  */
+}
+
+triggerChallengeDetail(index: number) {
+  this.challengeExpand[index] = !this.challengeExpand[index];
 }
 
 

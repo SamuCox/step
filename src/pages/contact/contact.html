@@ -1,9 +1,32 @@
+<!--
+<ion-header no-shadow>
+
+	<ion-navbar transparent>
+		<ion-title>
+			Page Title
+		</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="openModal()">
+				<ion-icon name="calendar"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header> -->
 <ion-content id="message-list">
-  <!-- <button (click)="addMsg()">Add Msg</button> -->
-  <div *ngFor="let message of messages | async | reverse" class="message-item">
-    <div *ngIf="message" class="message-inner-wrapper">
-      <message-detail [msg]="message"></message-detail>
-    </div>
-  </div>
+	<ion-item-group>
+		<ion-item-divider sticky class="calendar-header">
+			<ion-buttons end>
+				<button ion-button icon-only (click)="openModal()" clear class="calendar-button">
+					<ion-icon name="calendar"></ion-icon>
+				</button>
+			</ion-buttons>
+		</ion-item-divider>
+		<!-- <button (click)="addMsg()">Add Msg</button> -->
+		<div *ngFor="let message of messages | async | reverse" class="message-item">
+			<div *ngIf="message" class="message-inner-wrapper">
+				<message-detail [msg]="message"></message-detail>
+			</div>
+		</div>
+	</ion-item-group>
 
 </ion-content>

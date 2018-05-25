@@ -9,25 +9,59 @@
 		<p>Get ready for the challenges prepared for you!</p>
 	</div>
 
-	<div class="challenge-list-wrapper" *ngIf="section">
-		<div *ngFor="let challenge of challenges; let cidx = index">
+	<div class="challenge-list-wrapper" *ngIf="section && challengeExpand">
+		<div (click)="triggerChallengeDetail(cidx)" *ngFor="let challenge of challenges; let cidx = index">
 			<ion-card class="challenge-card">
 				<ion-card-header text-wrap>
-					{{challenge.title}}
+					<ion-grid>
+						<ion-row>
+							<ion-col col-1>
+								<ion-checkbox mode="ios" [(ngModel)]="challenge.hasCompleted"></ion-checkbox>
+							</ion-col>
+							<ion-col class="challenge-title">
+								{{challenge.title}}
+							</ion-col>
+							<ion-col col-1>
+								<ion-icon name="ios-arrow-down"></ion-icon>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
 				</ion-card-header>
+				<ion-card-content *ngIf="challengeExpand[cidx]">
+					<ion-grid>
+						<ion-row>
+							<ion-col>
+								<div text-center class="attrib-title">
+									Difficulty
+								</div>
+								<div text-center class="attrib-value val-orange">
+									{{challenge.difficulty}}
+								</div>
+							</ion-col>
+							<ion-col>
+								<div text-center class="attrib-title"> 
+									Approx Time
+								</div>
+								<div text-center class="attrib-value val-blue">
+									20 min
+								</div>
+							</ion-col>
+							<ion-col>
+								<div text-center class="attrib-title">
+									Best Time to Do
+								</div>
+								<div text-center class="attrib-value val-green">
+									Lunch
+								</div>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+				</ion-card-content>
 				<ion-card-content>
-					<div class="icons"><ion-icon name="time"></ion-icon>{{challenge.duration}}</div>
 				<!--
-				<ion-grid>
-					<ion-row>
-						<ion-col>
-							Difficulty: {{challenge.difficulty}}
-						</ion-col>
-						<ion-col>
-							Fun: {{challenge.fun}}
-						</ion-col>
-					</ion-row>
-				</ion-grid> -->
+			-->
+
+				<!--
 				<ion-grid *ngIf="!challenge.hasCompleted && !challenge.hasGivenup">
 					<ion-row>
 						<ion-col>
@@ -37,7 +71,7 @@
 							<button ion-button full class="challenge-button" (click)="completeChallenge(cidx)">I just finished it!</button>
 						</ion-col>
 					</ion-row>
-				</ion-grid>
+				</ion-grid> -->
 
 			</ion-card-content>
 		</ion-card>

@@ -90,7 +90,7 @@ import * as moment from 'moment';
  	}
 
  	getDayName(index: number) {
- 		return ['Sunday', 'Monday', 'Tuedsday', "wednesday", "Thursday", "Friday"][index];
+ 		return ['Monday', 'Tuedsday', "wednesday", "Thursday", "Friday", "Saturday", 'Sunday'][index];
  	}
 
  	ngOnChanges(changes: any) {

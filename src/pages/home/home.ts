@@ -128,29 +128,6 @@ export class HomePage {
 
 	}
 	
-/*
-	ionViewDidEnter() {
-		this.health.requestAuthorization([
-			'steps'
-			])
-		.then(res => {
-			console.log("requested " + res);
-			this.health.queryAggregated({
-  		startDate: new Date(new Date().getTime() - 24 * 60 * 60 * 1000), // three days ago
-  		endDate: new Date(), // now
-  		dataType: 'steps',
-  		bucket: 'day'})
-			.then(res => {
-				//this.generateStepChart();
-				for(var property in res[1]) {
-					console.log(property + "=" + res[1][property]);
-					this.step = res[1].value;
-				}})
-			.catch(e => {console.log("steps err " + e)})
-			.catch(e => console.log("e1"+e));
-		}
-		);
-	}*/
 
 	generateStepChart(step: number) {
 		console.log("start generation: " + step);

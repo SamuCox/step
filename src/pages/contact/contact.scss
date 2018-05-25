@@ -3,6 +3,26 @@ page-contact {
 		
 	}
 
+	ion-header {
+	}
+
+	ion-navbar {
+		background-color: transparent !important;
+	}
+
+	ion-item-divider {
+		
+	}
+
+	.calendar-header {
+		z-index: 10000000;
+		border: transparent !important;
+	}
+
+	.calendar-button {
+		color: white;
+	}
+
 	.item-md {
 		background: transparent;
 		//background: linear-gradient(#acb6e5, #86fde8);
@@ -10,7 +30,8 @@ page-contact {
 
 	#message-list {
 		//background: linear-gradient(#acb6e5, #86fde8);
-		background: linear-gradient(#dae9e4, #4990E2);
+		//background: linear-gradient(#dae9e4, #4990E2);
+		background: #52BCFE;
 		padding: 0px !important;
 		//background: color($colors, light);
 	}

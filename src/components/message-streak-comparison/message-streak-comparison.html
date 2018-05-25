@@ -1,13 +1,50 @@
 <div class="comparison-page">
-	<p>You have been walking continuously for 9 days.</p>
+<!--
+	<div class="step-bar">
+		<div class="line-bar-wrapper">
+			<div class="gray-line"></div>
+			<div class="color-line"></div>
+		</div>
+		<ion-grid class="circle-wrapper">
+			<ion-row class="circle-row">
+				<ion-col class="circle-col">
+					<div class="red-circle"></div>
+					<ion-icon class="check-icon" name="checkmark"></ion-icon>
+					<div class="red-number"> 500 </div>
+				</ion-col>
+				<ion-col class="circle-col">
+					<div class="orange-circle"></div>
+					<ion-icon class="check-icon" name="checkmark"></ion-icon>
+					<div class="orange-number"> 5000 </div>
+				</ion-col>
+				<ion-col class="circle-col">
+					<div class="blue-circle"></div>
+					<ion-icon class="check-icon" name="checkmark"></ion-icon>
+					<div class="blue-number"> 7500 </div>
+				</ion-col>
+				<ion-col class="circle-col">
+					<div class="green-circle"></div>
+					<ion-icon class="check-icon" name="checkmark"></ion-icon>
+					<div class="green-number"> 10k </div>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+	-->
 
-	<ion-item-group>
-		<ion-item-divider sticky>
-			<ion-card>
-				<div>
+	<div class="section-description step-intro">
+		<p>Hey there, you've walked <span class="today-step-count">{{this.section.steps[this.section.steps.length - 1]}}</span> steps today,</p>
+		<p>and this is the <span class="today-day-count">{{this.section.steps.length}}</span> day you've been continuosly walking!</p>
+	</div>
+
+	<ion-item-group class="graph-group">
+		<ion-item-divider sticky class="graph-header">
+			<!-- <img class="title-icon" src="assets/imgs/icons/chart.png"> -->
+			<ion-card class="graph-card">
+				<div style="height: 180px">
 					<canvas #barCanvas></canvas>
 				</div>
-				<ion-segment [(ngModel)]="comparisonMode" color="primary">
+				<ion-segment *ngIf="hasShownComparison" [(ngModel)]="comparisonMode" color="primary">
 					<ion-segment-button value="calendar" (ionSelect)="selectCalendar()">
 						Calendar Days
 					</ion-segment-button>
@@ -20,17 +57,62 @@
 
 		<br> <br>
 
-		<div class="section-description">
-			<div class="streak-identification">
-				<p> We identified your recent walking behavior is <span class="self-label">{{section.streakName}}</span>, which means that {{section.streakDescription}}</p>
+		<div *ngIf="section" class="section-description streak-intro">
+			<p>We identified your recent walking behavior is</p>
+			<div text-center>
+				<img src="assets/imgs/streaks/01.png" class="streak-icon">
 			</div>
+			<ion-card class="streak-identification">
+				<ion-card-header text-wrap>
+					<p class="streak-name" text-center> <span class="self-label">{{section.streakName}}</span></p>
+					<p>{{section.streakDescription}}</p>
+				</ion-card-header>
+				<ion-card-content>
+					<ion-grid>
+						<ion-row class="attrib-row">
+							<ion-col>
+								<div class="attrib-title">
+									Duration
+								</div>
+								<div text-center class="attrib-value">
+									<div class="attrib-wrapper">
+										<div [ngClass]="{'green-attrib': (section.streakDuration * 1.0 / 6) > 0.67, 'blue-attrib': (section.streakDuration * 1.0 / 6) > 0.33 && (section.streakDuration * 1.0 / 6) < 0.67, 'red-attrib': (section.streakDuration * 1.0 / 6) < 0.33}"></div>
+									</div>
+								</div>
+							</ion-col>
+							<ion-col>
+								<div class="attrib-title"> 
+									Step Level
+								</div>
+								<div text-center class="attrib-value">
+									<div class="attrib-wrapper">
+										<div [ngClass]="{'green-attrib': (section.streakDuration * 1.0 / 6) > 0.67, 'blue-attrib': (section.streakStepLevel * 1.0 / 7) > 0.33 && (section.streakStepLevel * 1.0 / 7) < 0.67, 'red-attrib': (section.streakStepLevel * 1.0 / 7) < 0.33}"></div>
+									</div>
+								</div>
+							</ion-col>
+							<ion-col>
+								<div class="attrib-title">
+									Consistency
+								</div>
+								<div text-center class="attrib-value">
+									<div class="attrib-wrapper">
+										<div [ngClass]="{'green-attrib': section.streakConsistency == 1, 'red-attrib': section.streakConsistency == 0}"></div>
+									</div>
+								</div>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+				</ion-card-content>
+			</ion-card>
 
-			
+
 			<!--{{section?.streakDescription}}-->
 			<!-- <p text-center><ion-icon name="walk"></ion-icon></p> -->
-			
+
 			<br>
-			<p> The above graph shows how you compare to similar users who walked <span class="compare-label">{{section.recommendStreakName}}</span>. You are close to them, but may wish to improve <span class="self-label"> consistency</span>.</p>
+			<p id="comparisonText" in-viewport
+			[inViewportOptions]="{ partial: false }"
+			(inViewportAction)="showComparison($event)"> The above graph shows how you compare to similar users who walked <span class="compare-label">{{section.recommendStreakName}}</span>. You are close to them, but may wish to improve <span class="self-label"> consistency</span>.</p>
 		</div>
 	</ion-item-group>
 </div>

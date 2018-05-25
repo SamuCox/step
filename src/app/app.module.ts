@@ -33,6 +33,7 @@ import { FcmProvider } from '../providers/fcm/fcm';
 
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { NouisliderModule } from "ng2-nouislider";
+import { InViewportModule } from 'ng-in-viewport';
 
 import * as moment from 'moment';
 import { DatabaseHelperProvider } from '../providers/database-helper/database-helper';
@@ -75,7 +76,8 @@ export const firebaseConfig = {
     MainPipe,
     IonRangeSliderModule,
     NouisliderModule,
-    SwingModule
+    SwingModule,
+    InViewportModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

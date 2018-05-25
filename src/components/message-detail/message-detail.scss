@@ -5,13 +5,24 @@ message-detail {
 	}
 
 	ion-card-header {
-		.message-time {
-			font-size: 40px !important;
-		}
 		border-bottom: 1px solid color($colors, light);
 		margin-bottom: 0px !important;
 		padding-bottom: 0px !important;
 	}
+
+	ion-item-divider.card-header {
+		z-index:1000000;
+	}
+
+	.card-header.item-md {
+		background: linear-gradient(#52BCFE, #9DDAFF) !important;
+	}
+
+	.message-time {
+			//font-size: 40px !important;
+			padding-top: 10px !important;
+			color: white;
+		}
 
 	ion-card-content {
 		padding: 0px;
@@ -82,10 +93,12 @@ message-detail {
 	}
 
 	.message-card {
-		padding: 0px !important;
+		padding: 0px 0px 50px 0px !important;
 		margin: 0px !important;
 		width: 100%;
 		overflow: visible;
+
+		background: #F6F9FB;
 
 		ion-card-content {
 			padding: 0px !important;
@@ -131,7 +144,8 @@ message-detail {
 	}
 
 	.message-content-wrapper {
-		position: relative;
+		//position: relative;
+		padding-bottom: 20px !important;
 	}
 
 	.message-date {

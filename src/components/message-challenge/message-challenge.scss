@@ -1,7 +1,8 @@
 message-challenge {
 
 	.background-wrapper {
-		background: #EEF7FA;
+		//background: #EEF7FA;
+		margin-top: 40px;
 	}
 
 	.icons {
@@ -11,21 +12,33 @@ message-challenge {
 	.challenge-card {
 		background: rgba(255, 255, 255, 0.7) !important;
 		margin-bottom: 30px;
-		border-left: 6px solid #98BBC4;
+	}
+
+	ion-card {
+		padding-left: 0px !important;
+		margin-bottom: 0px !important;
 	}
 
 	button {
 		text-transform: none !important;
 	}
 
+	.challenge-title {
+		padding-left: 15px;
+		font-weight: normal;
+	}
+
 	ion-card-content {
-		padding: 0px;
+		padding: 0px !important;
 	}
 
 	ion-card ion-card-header {
 		font-size: 16px !important;
 		font-weight: bold !important;
 		color: color($colors, dark) !important;
+		background: #D6E9FF;
+		padding-left: 0px !important;
+		padding: 2px 2px 2px 2px !important;
 	}
 
 	.pre-survey {
@@ -147,5 +160,17 @@ message-challenge {
 		padding: 10px 30px 0px 30px;
 		//background: #EEF7FA;
 		margin-bottom: 0px;
+	}
+
+	.val-orange {
+		color: #F6A623;
+	}
+
+	.val-blue {
+		color: #78B7FF;
+	}
+
+	.val-green {
+		color: #50E3C2;
 	}
 }

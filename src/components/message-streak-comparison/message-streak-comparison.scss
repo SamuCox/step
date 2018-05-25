@@ -1,6 +1,192 @@
 message-streak-comparison {
 	canvas {
-		height: 400px;
+	}
+
+	.step-intro {
+		padding-bottom: 0px !important;
+		padding-top: 0px !important;
+	}
+
+	.today-step-count {
+		color: #50E3C2;
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	.today-day-count {
+		font-weight: bold;
+	}
+
+	.graph-group {
+	}
+
+	.title-icon {
+		width: 40px;
+		height: 40px;
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.attrib-title {
+		font-size: 12px;
+	}
+
+	.attrib-row {
+		padding-bottom: 10px;
+	}
+
+	.attrib-wrapper {
+		width: 70%;
+		display: block;
+		background-color: #F1F1F1;
+		height: 4px;
+	}
+
+	.blue-attrib {
+		height: 4px;
+		display: block;
+		width: 60%;
+		background-color: #82BCFF;
+		//position: absolute;
+		//top: 30px;
+	}
+
+	.green-attrib {
+		height: 4px;
+		display: block;
+		width: 80%;
+		background-color: #50E3C2;
+	}
+
+	.red-attrib {
+		height: 4px;
+		display: block;
+		width: 40%;
+		background-color: #FFC7C7;
+
+	}
+
+	.attrib-title {
+		color: #86888B;
+		padding: 4px;
+	}
+
+	.circle-row {
+		padding-left: 10px;
+	}
+
+	.red-circle {
+		position: relative;
+	}
+
+	.check-icon {
+		position: absolute;
+		top: 8px;
+		left: 8px;
+		color: white;
+	}
+
+	.streak-intro {
+		padding-top: 5px !important;
+	}
+
+	.step-bar {
+		height: 100px;
+		padding-left: 8px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		position: relative;
+
+		.line-bar-wrapper {
+			margin-left: auto;
+			margin-right: auto;
+			width: 80%;
+			display: block;
+			background-color: #000;
+		}
+
+		.color-line{
+			height: 4px;
+			display: block;
+			width: 80%;
+			background: linear-gradient(to right, #FF9B9B, #F8D0A7, #96E9FE, #50E3C2) !important;
+			position: absolute;
+			top: 30px;
+		}
+
+		.gray-line{
+			height: 4px;
+			display: block;
+			width: 80%;
+			background-color: #ccc;
+			position: absolute;
+			top: 30px;
+
+		}
+
+		.red-circle {
+			height: 20px;
+			width: 20px;
+			background-color: #FD5454;
+			border-radius: 50%;
+			display: inline-block;
+		}
+
+		.red-number {
+			color: #FD5454;
+		}
+
+		.orange-circle {
+			height: 20px;
+			width: 20px;
+			background-color: #FFA72B;
+			border-radius: 50%;
+			display: inline-block;
+		}
+
+		.orange-number {
+			color: #FFA72B;
+		}
+
+		.blue-circle {
+			height: 20px;
+			width: 20px;
+			background-color: #3BD2FF;
+			border-radius: 50%;
+			display: inline-block;
+		}
+
+		.blue-number {
+			color: #3BD2FF;
+		}
+
+		.green-circle {
+			height: 20px;
+			width: 20px;
+			background-color: #50E3C2;
+			border-radius: 50%;
+			display: inline-block;
+		}
+
+		.green-number {
+			color: #50E3C2;
+		}
+
+
+		.circle-wrapper {
+			//padding-left: 5px;
+			position: absolute;
+			width: 115%;
+			top: 10px;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+
+		
 	}
 
 	ion-segment {
@@ -13,6 +199,7 @@ message-streak-comparison {
 		padding: 30px;
 		//background: #EEF7FA;
 		margin-bottom: 0px;
+		position: relative;
 	}
 
 	.self-label {
@@ -27,9 +214,14 @@ message-streak-comparison {
 
 	ion-card-content {
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 12px 20px 0 rgba(0, 0, 0, 0.1);
-		padding-bottom: 20px;
+		padding-bottom: 0px;
 		z-index: 10000;
-		background: #EEF7FA;
+		background: white;
+	}
+
+	ion-card-header {
+		background: #DEEBFC; 
+		padding-bottom: 20px !important;
 	}
 
 	.sticky-graph {
@@ -37,7 +229,52 @@ message-streak-comparison {
 		top: 0px;
 	}
 
+	.graph-card {
+		margin-bottom: 0px;
+	}
+
 	.comparison-page {
 		position: relative;
+	}
+
+	.graph-header {
+		.label-md {
+			margin-top: 65px !important;
+			margin-bottom: 10px !important;
+			//background: #EEF7FA;
+		}
+		background: linear-gradient(#F6F9FB, #DAECF8) !important;
+	}
+
+	.graph-header.item-md {
+		background: rgba(255, 255, 255, 0.4);
+		padding-bottom: 5px;
+	}
+
+	.streak-icon {
+		width: 70px;
+		height: 70px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		position: absolute;
+		left:50%;
+		margin-left:-35px;
+	}
+
+	.streak-identification {
+		margin-top: 40px;
+		padding-left: 0px;
+		padding-right: 0px;
+		width:100%;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+
+		.streak-name {
+			padding-top: 20px;
+			padding-bottom: 20px;
+			font-size: 16px;
+			color: #66ADFF;
+		}
 	}
 }
