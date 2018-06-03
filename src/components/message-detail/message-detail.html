@@ -8,8 +8,7 @@
 			<ion-card-content class="message-content-wrapper">
 				<div *ngFor="let section of sections; let idx = index" id="section{{idx}}">
 					<message-graph *ngIf=" section.type == 'graph'" [section]="section"> </message-graph>
-					<message-streak-comparison *ngIf=" section.type == 'streak-comparison'" [section]="section"> </message-streak-comparison>
-					<message-statas-comparison *ngIf=" section.type == 'stats-comparison'" [section]="section"></message-statas-comparison>
+					<message-streak-comparison *ngIf=" section.type == 'streak-comparison' || section.type == 'stats-comparison' || section.type == 'streak-no-comparison' || section.type == 'stats-no-comparison'" [section]="section"> </message-streak-comparison>
 					<message-challenge *ngIf=" section.type == 'challenge'" [section]="section" [messageId]="messageId" [sectionId]="idx"> </message-challenge>
 
 

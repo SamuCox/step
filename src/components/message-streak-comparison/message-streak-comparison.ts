@@ -20,7 +20,7 @@ import { ViewController } from 'ionic-angular';
 
    @Input() set section(value: any) {
      this._section = value;
-     console.log("comparisonMode = " + this.comparisonMode);
+     console.log("comparisonMode = " + this._section.type);
      this.initializeGraph();
    }
 
@@ -61,12 +61,6 @@ import { ViewController } from 'ionic-angular';
    }
 
    initializeGraph() {
-     console.log("section: " + this.section);
-     console.log("section: " + this.section.content);
-     for(var property in this.section) {
-       console.log(property + "=" + this.section[property]);
-       console.log(this.section.value);
-     }
 
      var emptyLabels = [];
      for (var i=0; i<this.section.steps.length; i++) {
@@ -74,8 +68,6 @@ import { ViewController } from 'ionic-angular';
      }
 
      this.loadGraph();
-     //this.initializeCalendar();
-     //this.initializeCohort();
    }
 
    loadGraph() {

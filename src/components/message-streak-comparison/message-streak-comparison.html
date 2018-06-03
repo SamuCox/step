@@ -30,89 +30,104 @@
 			</ion-row>
 		</ion-grid>
 	</div>
-	-->
+-->
 
-	<div class="section-description step-intro">
-		<p>Hey there, you've walked <span class="today-step-count">{{this.section.steps[this.section.steps.length - 1]}}</span> steps today,</p>
-		<p>and this is the <span class="today-day-count">{{this.section.steps.length}}</span> day you've been continuosly walking!</p>
+
+<div class="section-description step-intro">
+	<p>Hey there, you've walked <span class="today-step-count">{{this.section.steps[this.section.steps.length - 1]}}</span> steps today,</p>
+	<p>and this is the <span class="today-day-count">{{this.section.steps.length}}</span> day you've been continuosly walking!</p>
+</div>
+
+<ion-item-group class="graph-group">
+	<ion-item-divider sticky class="graph-header">
+		<!-- <img class="title-icon" src="assets/imgs/icons/chart.png"> -->
+		<ion-card class="graph-card">
+			<div style="height: 180px">
+				<canvas #barCanvas></canvas>
+			</div>
+			<ion-segment *ngIf="hasShownComparison" [(ngModel)]="comparisonMode" color="primary">
+				<ion-segment-button value="calendar" (ionSelect)="selectCalendar()">
+					Calendar Days
+				</ion-segment-button>
+				<ion-segment-button value="cohort" (ionSelect)="selectCohort()">
+					Cohort Days
+				</ion-segment-button>
+			</ion-segment>
+		</ion-card>
+	</ion-item-divider>
+
+	<br> <br>
+
+	<div *ngIf="section && (section.type == 'stats-no-comparison' || section.type == 'stats-comparison')" class="section-description stats-intro">
+		<p>Your median step count over these days is {{section.stepLevel}}</p>
 	</div>
 
-	<ion-item-group class="graph-group">
-		<ion-item-divider sticky class="graph-header">
-			<!-- <img class="title-icon" src="assets/imgs/icons/chart.png"> -->
-			<ion-card class="graph-card">
-				<div style="height: 180px">
-					<canvas #barCanvas></canvas>
-				</div>
-				<ion-segment *ngIf="hasShownComparison" [(ngModel)]="comparisonMode" color="primary">
-					<ion-segment-button value="calendar" (ionSelect)="selectCalendar()">
-						Calendar Days
-					</ion-segment-button>
-					<ion-segment-button value="cohort" (ionSelect)="selectCohort()">
-						Cohort Days
-					</ion-segment-button>
-				</ion-segment>
-			</ion-card>
-		</ion-item-divider>
-
-		<br> <br>
-
-		<div *ngIf="section" class="section-description streak-intro">
-			<p>We identified your recent walking behavior is</p>
-			<div text-center>
-				<img src="assets/imgs/streaks/01.png" class="streak-icon">
-			</div>
-			<ion-card class="streak-identification">
-				<ion-card-header text-wrap>
-					<p class="streak-name" text-center> <span class="self-label">{{section.streakName}}</span></p>
-					<p>{{section.streakDescription}}</p>
-				</ion-card-header>
-				<ion-card-content>
-					<ion-grid>
-						<ion-row class="attrib-row">
-							<ion-col>
-								<div class="attrib-title">
-									Duration
+	<div *ngIf="section && (section.type == 'streak-no-comparison' || section.type == 'streak-comparison')" class="section-description streak-intro">
+		<p>We identified your recent walking behavior is</p>
+		<div text-center>
+			<img src="assets/imgs/streaks/01.png" class="streak-icon">
+		</div>
+		<ion-card class="streak-identification">
+			<ion-card-header text-wrap>
+				<p class="streak-name" text-center> <span class="self-label">{{section.streakName}}</span></p>
+				<p>{{section.streakDescription}}</p>
+			</ion-card-header>
+			<ion-card-content>
+				<ion-grid>
+					<ion-row class="attrib-row">
+						<ion-col>
+							<div class="attrib-title">
+								Duration
+							</div>
+							<div text-center class="attrib-value">
+								<div class="attrib-wrapper">
+									<div [ngClass]="{'green-attrib': (section.streakDuration * 1.0 / 6) > 0.67, 'blue-attrib': (section.streakDuration * 1.0 / 6) > 0.33 && (section.streakDuration * 1.0 / 6) < 0.67, 'red-attrib': (section.streakDuration * 1.0 / 6) < 0.33}"></div>
 								</div>
-								<div text-center class="attrib-value">
-									<div class="attrib-wrapper">
-										<div [ngClass]="{'green-attrib': (section.streakDuration * 1.0 / 6) > 0.67, 'blue-attrib': (section.streakDuration * 1.0 / 6) > 0.33 && (section.streakDuration * 1.0 / 6) < 0.67, 'red-attrib': (section.streakDuration * 1.0 / 6) < 0.33}"></div>
-									</div>
+							</div>
+						</ion-col>
+						<ion-col>
+							<div class="attrib-title"> 
+								Step Level
+							</div>
+							<div text-center class="attrib-value">
+								<div class="attrib-wrapper">
+									<div [ngClass]="{'green-attrib': (section.streakDuration * 1.0 / 6) > 0.67, 'blue-attrib': (section.streakStepLevel * 1.0 / 7) > 0.33 && (section.streakStepLevel * 1.0 / 7) < 0.67, 'red-attrib': (section.streakStepLevel * 1.0 / 7) < 0.33}"></div>
 								</div>
-							</ion-col>
-							<ion-col>
-								<div class="attrib-title"> 
-									Step Level
+							</div>
+						</ion-col>
+						<ion-col>
+							<div class="attrib-title">
+								Consistency
+							</div>
+							<div text-center class="attrib-value">
+								<div class="attrib-wrapper">
+									<div [ngClass]="{'green-attrib': section.streakConsistency == 1, 'red-attrib': section.streakConsistency == 0}"></div>
 								</div>
-								<div text-center class="attrib-value">
-									<div class="attrib-wrapper">
-										<div [ngClass]="{'green-attrib': (section.streakDuration * 1.0 / 6) > 0.67, 'blue-attrib': (section.streakStepLevel * 1.0 / 7) > 0.33 && (section.streakStepLevel * 1.0 / 7) < 0.67, 'red-attrib': (section.streakStepLevel * 1.0 / 7) < 0.33}"></div>
-									</div>
-								</div>
-							</ion-col>
-							<ion-col>
-								<div class="attrib-title">
-									Consistency
-								</div>
-								<div text-center class="attrib-value">
-									<div class="attrib-wrapper">
-										<div [ngClass]="{'green-attrib': section.streakConsistency == 1, 'red-attrib': section.streakConsistency == 0}"></div>
-									</div>
-								</div>
-							</ion-col>
-						</ion-row>
-					</ion-grid>
-				</ion-card-content>
-			</ion-card>
+							</div>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+	</div>
 
 
-			<!--{{section?.streakDescription}}-->
-			<!-- <p text-center><ion-icon name="walk"></ion-icon></p> -->
-
-			<br>
-			<p id="comparisonText" in-viewport
+	<!--{{section?.streakDescription}}-->
+	<!-- <p text-center><ion-icon name="walk"></ion-icon></p> -->
+	<div>
+		<br>
+		<div class="comparison-text" *ngIf="section && (section.type == 'streak-comparison' || section.type == 'stats-comparison')">
+			<p id="comparisonText" *ngIf="section.type == 'streak-comparison' && section.comparisonTarget == 'group'" in-viewport
 			[inViewportOptions]="{ partial: false }"
 			(inViewportAction)="showComparison($event)"> The above graph shows how you compare to similar users who walked <span class="compare-label">{{section.recommendStreakName}}</span>. You are close to them, but may wish to improve <span class="self-label"> consistency</span>.</p>
+			<p id="comparisonTextStreakAll" *ngIf= "section.type == 'streak-comparison' && section.comparisonTarget == 'all'">
+				The above graph shows how you compare to all users. You may wish to improve <span class="self-label"> consistency</span>.
+			</p>
+			<p id="comparisonTextStatsGroup" *ngIf="section.type == 'stats-comparison' &&  section.comparisonTarget == 'group'">The above graph shows how you compare to similar users. Similar users have a median step count of {{section.calendarStepLevel}}.
+			</p>
+			<p id="comparisonTextStatsAll" *ngIf="section.type == 'stats-comparison' && section.comparisonTarget == 'all'">The above graph shows how you compare to all users. People have a median step count of {{section.calendarStepLevel}}.
+			</p>
 		</div>
-	</ion-item-group>
+	</div>
+</ion-item-group>
 </div>
